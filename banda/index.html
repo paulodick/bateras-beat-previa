@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Aula de música pra quem quer ter banda · Bateras Beat</title>
+<meta name="description" content="Quer ter banda e subir no palco? Agende uma aula cortesia de 1 hora na Bateras Beat, a rede de escola de música que mais cresce no Brasil. Não precisa levar nada. Você no palco em 3 meses!">
+<meta property="og:title" content="Aula de música pra quem quer ter banda · Bateras Beat">
+<meta property="og:description" content="Aula cortesia de 1 hora. Não precisa levar nada. Você no palco em 3 meses!">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="../comum/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800&family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../comum/sites-incriveis.css">
+<link rel="stylesheet" href="../comum/base.css">
+<style>
+  :root {
+    --fonte-display: "Anton", Impact, sans-serif;
+    --fonte-texto: "Archivo", system-ui, sans-serif;
+    --fonte-mao: "Permanent Marker", "Comic Sans MS", cursive;
+    --fundo: #000; --tinta: #fff; --tinta-suave: #BDBDBD;
+    --largura: 1000px;
+  }
+  h1, h2 { text-transform: uppercase; letter-spacing: .005em; line-height: .95; }
+  h2 { font-size: clamp(2.5rem, 7vw, 5rem); }
+  .secao { padding: var(--e6) 0; }
+  @media (min-width: 900px) { .miolo { width: min(100% - 460px, var(--largura)); } }
+
+  .topo { color: #fff; }
+  .topo.encolhido { background: rgba(0,0,0,.92); }
+
+  /* ---------- assinatura: o setlist riscado ---------- */
+  .topo nav.setlist {
+    font-family: var(--fonte-mao); background: #fff; color: #000; border-radius: 2px;
+    box-shadow: 0 12px 28px -10px rgba(0,0,0,.8);
+  }
+  .setlist::before {
+    content: ""; position: absolute; top: -12px; left: 50%; width: 92px; height: 26px; margin-left: -46px;
+    background: rgba(255,204,0,.88); transform: rotate(-3deg);
+  }
+  .setlist .titulo-set { font-size: 1.25rem; padding: 4px 6px 6px; border-bottom: 2px solid #000; margin-bottom: 4px; }
+  .topo nav.setlist ul { flex-direction: column; gap: 0; }
+  .topo nav.setlist a {
+    position: relative; justify-content: flex-start; font-weight: 400; font-size: 1.125rem; padding: 0 8px; border-radius: 0; color: #000;
+  }
+  .topo nav.setlist a:hover { background: #E8E8E8; }
+  .topo nav.setlist a .num { width: 1.6em; color: #555; }
+  .topo nav.setlist a::after {
+    content: ""; position: absolute; left: 6px; right: 6px; top: 52%; height: 3px; background: #000; border-radius: 2px;
+    transform: scaleX(0) rotate(-1.5deg); transform-origin: left; transition: transform .45s cubic-bezier(.6,0,.2,1);
+  }
+  .topo nav.setlist a.passou { color: #555; }
+  .topo nav.setlist a.passou::after { transform: scaleX(1) rotate(-1.5deg); }
+  .topo nav.setlist a[aria-current] { color: var(--vermelho-escuro); }
+  .topo nav.setlist a[aria-current] .num::before { content: "▸"; color: var(--vermelho); margin-left: -0.9em; position: absolute; }
+  .topo nav.setlist a.set-bis { color: var(--vermelho-escuro); border-top: 2px dashed #BDBDBD; margin-top: 4px; }
+  .topo nav.setlist a.set-bis .num { width: 2.4em; }
+  /* durante o show, o setlist sai da frente do palco */
+  @media (min-width: 900px) {
+    .topo nav.setlist { transition: transform .5s cubic-bezier(.4,0,.2,1), opacity .4s; }
+    .no-show .topo nav.setlist { transform: translateX(78%) rotate(6deg); opacity: .55; }
+    .no-show .topo nav.setlist:hover, .no-show .topo nav.setlist:focus-within { transform: rotate(2deg); opacity: 1; }
+  }
+  @media (min-width: 900px) {
+    .topo nav.setlist { position: fixed; right: 28px; top: 104px; width: 214px; padding: 18px 10px 12px; transform: rotate(2deg); }
+    .topo .menu-botao { display: none; }
+  }
+  @media (max-width: 899px) {
+    .topo nav.setlist { left: 16px; right: 16px; top: calc(100% + 14px); padding: 18px 10px 10px; transform: rotate(-1deg); }
+  }
+
+  /* ---------- cenário comum: boca de cena e cortinas ---------- */
+  .palco-tela { position: absolute; inset: 0; }
+  .palco-tela svg { width: 100%; height: 100%; }
+  .cortina {
+    position: absolute; top: 0; bottom: 0; width: 51%; z-index: 3; will-change: transform;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,.55)),
+      repeating-linear-gradient(90deg, #7A0000 0 14px, #B30000 14px 40px, #D40404 40px 52px, #B30000 52px 74px);
+  }
+  .cortina.esq { left: 0; transform: translateX(calc(var(--abre) * -100%)); box-shadow: inset -18px 0 24px -12px rgba(0,0,0,.7); }
+  .cortina.dir { right: 0; transform: translateX(calc(var(--abre) * 100%)); box-shadow: inset 18px 0 24px -12px rgba(0,0,0,.7); }
+  .bambinela {
+    position: absolute; left: 0; right: 0; top: 0; height: 9%; z-index: 4;
+    background: radial-gradient(circle at 50% 0, #B30000 0 58%, transparent 60%) 0 0 / 80px 100%, #7A0000;
+    box-shadow: 0 8px 18px rgba(0,0,0,.6);
+  }
+  /* janela local de tempo dentro de uma cena: --a (início) e --b (fim) em 0..1 */
+  .tl { --t: clamp(0, (var(--progresso, 1) - var(--a, 0)) / (var(--b, 1) - var(--a, 0)), 1); }
+
+  /* 1 · abertura: cortina fechada + pôster na parede */
+  .cortina-cena { --progresso: 0; }
+  .fx-reduzido .cortina-cena { --progresso: 1; }
+  .cortina-cena .fx-palco { display: block; }
+  .cortina-cena { --abre: calc(var(--progresso) * 0.3); }
+  @media (max-width: 899px) { .cortina-cena { --abre: calc(var(--progresso) * 0.4); } }
+  .parede {
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 38px, #0A0A0A 38px 41px),
+      repeating-linear-gradient(90deg, #161616 0 2px, #1E1E1E 2px 100%);
+  }
+  .boca { position: absolute; inset: 0; overflow: hidden; background: #000; }
+  @media (min-width: 900px) {
+    .boca { left: 34%; top: 9%; bottom: 0; right: 0; border-left: 10px solid #0A0A0A; }
+  }
+  .vago {
+    position: absolute; left: 0; right: 0; bottom: 12%; z-index: 5; text-align: center; text-shadow: 0 2px 8px #000;
+    font-family: var(--fonte-mao); font-size: clamp(1.75rem, 4vw, 3rem); color: #fff;
+    opacity: calc(var(--progresso) * 2.2 - 1.1);
+  }
+  .poster {
+    position: absolute; z-index: 6; background: #fff; color: #000;
+    left: 16px; right: 16px; top: calc(var(--topo-altura) + 8px);
+    padding: 22px 20px 20px; transform: rotate(-1.2deg);
+    box-shadow: 0 24px 50px -20px rgba(0,0,0,.9);
+  }
+  .poster::before, .poster::after {
+    content: ""; position: absolute; top: -10px; width: 70px; height: 22px; background: rgba(255,204,0,.9);
+  }
+  .poster::before { left: -14px; transform: rotate(-30deg); }
+  .poster::after { right: -14px; transform: rotate(28deg); }
+  .poster .apresenta { font-family: var(--fonte-texto); font-weight: 800; font-size: .8125rem; letter-spacing: .14em; text-transform: uppercase; color: var(--vermelho-escuro); }
+  .poster h1 { font-size: clamp(2.5rem, 10.5vw, 5.75rem); margin: 8px 0 10px; }
+  .poster h1 .vermelho { color: var(--vermelho-escuro); display: block; }
+  .poster .data { font-family: var(--fonte-mao); font-size: clamp(1.25rem, 3vw, 1.75rem); margin-bottom: 18px; }
+  .poster .risco-zero { color: #333; }
+  .poster .risco-zero span::before { color: var(--vermelho-escuro); }
+  @media (max-width: 899px) {
+    .poster { transform: translateY(calc(var(--progresso) * -115%)) rotate(-1.2deg); }
+  }
+  @media (min-width: 900px) {
+    .poster { left: max(24px, 3vw); right: auto; width: 36%; max-width: 520px; top: 50%; transform: translateY(-46%) rotate(-2deg); padding: 32px 30px 28px; }
+    .poster h1 { font-size: clamp(2.75rem, 4.6vw, 5.25rem); }
+  }
+  @media (max-height: 640px) and (max-width: 899px) { .poster h1 { font-size: 2.25rem; } .poster { padding: 16px; } }
+
+  /* 2 · o caminho (trilho) */
+  .caminho .fx-palco { align-items: center; justify-content: flex-start; padding-top: var(--topo-altura); }
+  .caminho .cabeca { position: absolute; top: calc(var(--topo-altura) + 16px); left: 16px; right: 16px; }
+  .caminho .cabeca h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
+  @media (min-width: 900px) { .caminho .cabeca { left: max(16px, calc((100% - var(--largura)) / 2 - 120px)); } }
+  .caminho [data-fx="trilho"] { width: 100%; gap: 20px; padding: 0 16px; margin-top: 80px; }
+  .ato {
+    flex: none; width: min(82vw, 520px); min-height: 52vh; border: 3px solid #fff; border-radius: 6px;
+    padding: 28px 24px; display: flex; flex-direction: column; justify-content: space-between; background: #0A0A0A;
+  }
+  .ato .n { font-family: var(--fonte-mao); font-size: 1.5rem; color: var(--amarelo); }
+  .ato h3 { font-family: var(--fonte-display); text-transform: uppercase; font-size: clamp(2.75rem, 7vw, 4.5rem); line-height: .95; margin: 10px 0; }
+  .ato p { color: var(--tinta-suave); font-size: 1.125rem; max-width: 32ch; }
+  .ato.chama { background: var(--vermelho-noite); border-color: var(--vermelho); }
+  .ato.chama .cta-bloco { margin-top: 20px; }
+
+  /* 3 · prova */
+  .prova .grade { display: grid; gap: var(--e4); margin-top: var(--e5); }
+  @media (min-width: 768px) { .prova .grade { grid-template-columns: 1fr 1fr; } }
+  .contador { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 20px; }
+  .contador .numero { font-family: var(--fonte-display); font-size: clamp(6rem, 22vw, 12rem); line-height: .85; color: var(--amarelo); }
+  .contador p { font-size: clamp(1.25rem, 2.5vw, 1.625rem); max-width: 22ch; font-weight: 600; }
+  .prova .marcas { margin-top: var(--e5); }
+  .prova .marcas img { width: 108px; }
+
+  /* 4 · PICO: o show */
+  .show .fx-palco { display: block; }
+  .show { --abre: calc(0.3 + 0.7 * clamp(0, var(--progresso, 1) / 0.2, 1)); }
+  .show .luz { opacity: calc(var(--t) * 0.9); }
+  .show .entra { opacity: var(--t); transform: translateY(calc((1 - var(--t)) * 40px)); transform-box: fill-box; }
+  .show .fileira { transform: translateY(calc((1 - var(--t)) * 220px)); }
+  .show .grito {
+    position: absolute; left: 16px; right: 16px; top: calc(var(--topo-altura) + 6%); z-index: 5; text-align: center;
+    opacity: var(--t); transform: scale(calc(0.85 + var(--t) * 0.15));
+  }
+  .show .grito h2 { font-size: clamp(2.75rem, 7.5vw, 6.5rem); text-shadow: 0 4px 0 #000, 0 0 40px rgba(0,0,0,.8); }
+  .show .grito p { display: inline-block; margin-top: 10px; padding: 6px 16px; background: #000; color: #fff; font-family: var(--fonte-mao); font-size: clamp(1.25rem, 3vw, 2rem); transform: rotate(-1.5deg); box-shadow: 0 6px 18px rgba(0,0,0,.6); }
+  @media (max-width: 899px) {
+    /* no celular o palco não cabe inteiro: a "câmera" acompanha quem entra, da esquerda pra direita */
+    .show .palco-tela svg {
+      position: absolute; left: 0; bottom: 0; height: 70svh; width: calc(70svh * 16 / 9); max-width: none;
+      --f: calc(0.2 + 0.63 * clamp(0, (var(--progresso, 1) - 0.3) / 0.36, 1) - 0.28 * clamp(0, (var(--progresso, 1) - 0.68) / 0.12, 1));
+      transform: translateX(calc(50vw - var(--f) * 70svh * 16 / 9));
+    }
+    .show .palco-tela { background: #0A0000; }
+    .show .grito { top: calc(var(--topo-altura) + 3%); }
+  }
+  .show .legenda-show {
+    position: absolute; left: 16px; bottom: 16px; z-index: 5; font-family: var(--fonte-mao); font-size: 1.125rem;
+    background: #fff; color: #000; padding: 4px 12px; transform: rotate(-2deg); opacity: calc(1 - var(--progresso, 1) * 4);
+  }
+
+  /* oferta, dúvidas, bis */
+  .oferta .miolo { display: grid; gap: var(--e4); }
+  @media (min-width: 900px) { .oferta .miolo { grid-template-columns: 1.2fr 1fr; align-items: center; } }
+  .oferta h2 { font-size: clamp(2.75rem, 8vw, 5.5rem); }
+  .oferta h2 em { font-style: normal; color: var(--vermelho); }
+  .inclui { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; font-size: 1.1875rem; }
+  .inclui li { border-left: 4px solid var(--amarelo); padding-left: 14px; }
+  .duvidas .grade { display: grid; gap: var(--e4); }
+  @media (min-width: 900px) { .duvidas .grade { grid-template-columns: 1fr 1.6fr; } }
+  .bis { text-align: center; padding: var(--e6) 0; background: radial-gradient(70% 80% at 50% 100%, #2A0000, #000 70%); }
+  .bis .rotulo { font-family: var(--fonte-mao); font-size: 1.5rem; letter-spacing: 0; text-transform: none; color: var(--amarelo); }
+  .bis h2 { font-size: clamp(3rem, 11vw, 8rem); margin: 8px 0 var(--e4); }
+
+  /* movimento-reduzido: as cenas ficam paradas no estado final, e legíveis */
+  .fx-reduzido .cortina-cena .fx-palco, .fx-reduzido .show .fx-palco { position: relative; height: 100svh; min-height: 640px; overflow: hidden; }
+  .fx-reduzido .caminho .fx-palco { padding: var(--e6) 0; }
+  .fx-reduzido .caminho .cabeca { position: static; padding: 0 16px; }
+  .fx-reduzido .caminho [data-fx="trilho"] { margin-top: 24px; }
+  .fx-reduzido .caminho .ato { min-height: 0; }
+</style>
+</head>
+<body data-msg="Olá! Vim pelo site e quero agendar minha aula cortesia. Quero tocar em banda!">
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="topo">
+  <div class="miolo" style="width:min(100% - 32px, 1400px)">
+    <a class="marca" href="#inicio" aria-label="Bateras Beat Music School — início"><img src="../comum/logo.png" alt="Bateras Beat Music School" width="140" height="140"></a>
+    <div class="topo-acoes">
+      <a class="cta cta-topo" data-cta href="https://www.baterasbeat.com.br/quem-somos/contato/faleconosco">Agendar aula cortesia</a>
+      <button class="menu-botao" type="button" data-menu-botao aria-expanded="false">Setlist</button>
+      <!-- movimento-assinatura: o menu é o setlist; cada seção vista é riscada -->
+      <nav class="setlist" data-nav aria-label="Setlist (seções da página)">
+        <p class="titulo-set" aria-hidden="true">Setlist</p>
+        <ul>
+          <li><a href="#inicio"><span class="num">1.</span>Cortina</a></li>
+          <li><a href="#caminho"><span class="num">2.</span>O caminho</a></li>
+          <li><a href="#prova"><span class="num">3.</span>Quem já tocou</a></li>
+          <li><a href="#show"><span class="num">4.</span>O show</a></li>
+          <li><a href="#duvidas"><span class="num">5.</span>Dúvidas</a></li>
+          <li><a href="#bis" class="set-bis"><span class="num">bis</span>Agendar aula</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- 1 · Cortina fechada, pôster na parede ao lado -->
+  <section class="cortina-cena" id="inicio" data-abertura data-fx-fixa data-fx-altura="2.2">
+    <div class="fx-palco">
+      <div class="parede" aria-hidden="true"></div>
+      <div class="boca" aria-hidden="true">
+        <div class="palco-tela">
+          <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice">
+            <defs>
+              <linearGradient id="cone1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+              <radialGradient id="poca1" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+            </defs>
+            <rect width="1600" height="900" fill="#0A0000"/>
+            <rect y="640" width="1600" height="260" fill="#161616"/>
+            <rect y="636" width="1600" height="8" fill="#2A0000"/>
+            <polygon points="770,0 830,0 980,660 620,660" fill="url(#cone1)"/>
+            <ellipse cx="800" cy="668" rx="230" ry="34" fill="url(#poca1)"/>
+            <!-- bateria vazia, esperando quem vai tocar (mesmo kit do show) -->
+            <g transform="translate(-160,0)">
+              <!-- pratos e estantes -->
+              <g stroke="#777" stroke-width="4" stroke-linecap="round">
+                <path d="M760,640 L770,402 M740,640 L760,600 L780,640"/>
+                <path d="M1170,640 L1160,420 M1150,640 L1166,600 L1190,640"/>
+                <path d="M712,640 L712,496 M694,640 L712,604 L730,640"/>
+                <path d="M820,640 L830,562 M806,640 L830,600 L852,640"/>
+              </g>
+              <ellipse cx="770" cy="400" rx="66" ry="9" transform="rotate(12 770 400)" fill="#FFCC00" stroke="#000" stroke-width="2"/>
+              <ellipse cx="770" cy="399" rx="12" ry="4" transform="rotate(12 770 400)" fill="#E8E8E8"/>
+              <ellipse cx="1160" cy="418" rx="74" ry="10" transform="rotate(-8 1160 418)" fill="#FFCC00" stroke="#000" stroke-width="2"/>
+              <ellipse cx="1160" cy="417" rx="13" ry="4" transform="rotate(-8 1160 418)" fill="#E8E8E8"/>
+              <ellipse cx="712" cy="500" rx="46" ry="6" fill="#FFCC00" stroke="#000" stroke-width="2"/>
+              <ellipse cx="712" cy="492" rx="46" ry="6" fill="#FFCC00" stroke="#000" stroke-width="2"/>
+              <!-- caixa -->
+              <rect x="794" y="540" width="72" height="28" fill="#B30000" stroke="#000" stroke-width="2"/>
+              <g fill="#E8E8E8"><rect x="802" y="546" width="5" height="16"/><rect x="818" y="546" width="5" height="16"/><rect x="834" y="546" width="5" height="16"/><rect x="850" y="546" width="5" height="16"/></g>
+              <ellipse cx="830" cy="540" rx="36" ry="8" fill="#E8E8E8" stroke="#BDBDBD" stroke-width="3"/>
+              <!-- tons -->
+              <rect x="882" y="468" width="58" height="40" fill="#B30000" stroke="#000" stroke-width="2"/>
+              <g fill="#E8E8E8"><rect x="890" y="476" width="5" height="22"/><rect x="926" y="476" width="5" height="22"/></g>
+              <ellipse cx="911" cy="468" rx="29" ry="8" fill="#E8E8E8" stroke="#BDBDBD" stroke-width="3"/>
+              <rect x="980" y="468" width="62" height="42" fill="#B30000" stroke="#000" stroke-width="2"/>
+              <g fill="#E8E8E8"><rect x="988" y="476" width="5" height="24"/><rect x="1028" y="476" width="5" height="24"/></g>
+              <ellipse cx="1011" cy="468" rx="31" ry="8" fill="#E8E8E8" stroke="#BDBDBD" stroke-width="3"/>
+              <!-- surdo -->
+              <path d="M1056,628 L1050,644 M1124,628 L1130,644" stroke="#777" stroke-width="4"/>
+              <rect x="1052" y="546" width="76" height="86" fill="#B30000" stroke="#000" stroke-width="2"/>
+              <g fill="#E8E8E8"><rect x="1060" y="556" width="5" height="64"/><rect x="1088" y="556" width="5" height="64"/><rect x="1114" y="556" width="5" height="64"/></g>
+              <ellipse cx="1090" cy="546" rx="38" ry="9" fill="#E8E8E8" stroke="#BDBDBD" stroke-width="3"/>
+              <!-- bumbo -->
+              <path d="M890,630 L874,646 M1030,630 L1046,646" stroke="#777" stroke-width="5"/>
+              <circle cx="960" cy="572" r="82" fill="#111" stroke="#B30000" stroke-width="12"/>
+              <circle cx="960" cy="572" r="74" fill="none" stroke="#E8E8E8" stroke-width="2"/>
+              <image href="../comum/logo.png" x="902" y="514" width="116" height="116"/>
+            </g>
+          </svg>
+        </div>
+        <p class="vago">Esse lugar tá vago.</p>
+        <div class="cortina esq"></div>
+        <div class="cortina dir"></div>
+        <div class="bambinela"></div>
+      </div>
+
+      <div class="poster">
+        <p class="apresenta">Bateras Beat Music School apresenta</p>
+        <h1>Aula de música pra quem quer <span class="vermelho">ter banda.</span></h1>
+        <p class="data">Você no palco em 3 meses!</p>
+        <div class="cta-bloco">
+          <a class="cta" data-cta href="https://www.baterasbeat.com.br/quem-somos/contato/faleconosco">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3a.5.5 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/></svg>
+            Agendar aula cortesia</a>
+          <p class="risco-zero"><span>1 hora</span><span>Não precisa levar nada</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · O caminho em 3 atos (trilho lateral) -->
+  <section class="caminho" id="caminho" aria-labelledby="t-caminho" data-fx-fixa data-fx-altura="3">
+    <div class="fx-palco">
+      <div class="cabeca">
+        <p class="rotulo" style="color:var(--amarelo)">O caminho</p>
+        <h2 id="t-caminho">Do quarto pro palco, em 3 atos.</h2>
+      </div>
+      <div data-fx="trilho">
+        <article class="ato"><div><p class="n">Ato 1</p><h3>A aula cortesia</h3></div><p>1 hora na unidade. Não precisa levar nada: você só aparece.</p></article>
+        <article class="ato"><div><p class="n">Ato 2</p><h3>As aulas</h3></div><p>Na unidade, com professor e o método criado pelo Dino Verdade, fundador da Bateras Beat.</p></article>
+        <article class="ato"><div><p class="n">Ato 3</p><h3>O palco</h3></div><p>Você no palco em 3 meses!</p></article>
+        <article class="ato chama"><div><p class="n">Agora</p><h3>O ato 1 começa aqui</h3></div>
+          <div class="cta-bloco">
+            <a class="cta" data-cta href="https://www.baterasbeat.com.br/quem-somos/contato/faleconosco">Agendar aula cortesia</a>
+            <p class="risco-zero"><span>1 hora</span><span>Não precisa levar nada</span></p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · Prova: quem já tocou -->
+  <section class="secao prova" id="prova" aria-labelledby="t-prova">
+    <div class="miolo">
+      <p class="rotulo" style="color:var(--amarelo)">Quem já tocou</p>
+      <h2 id="t-prova" data-fx="subir">Isso aqui rola de verdade.</h2>
+      <div class="contador" style="margin-top:var(--e4)" data-fx="esquerda">
+        <p class="numero"><span data-fx="contar" data-fx-fim="156">156</span></p>
+        <p>bateras tocando juntas no Bateras 100% Brasil, em Santo André.</p>
+      </div>
+      <div class="grade">
+        <div data-fx="subir">
+          <button class="yt" type="button" data-yt="oiCVMpKbbdc" aria-label="Assistir: Bateras 100% Brasil, 156 bateras em Santo André">
+            <img src="https://i.ytimg.com/vi/oiCVMpKbbdc/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+            <span class="play" aria-hidden="true"></span>
+          </button>
+          <p class="legenda">Bateras 100% Brasil: 156 bateras, Santo André/SP.</p>
+        </div>
+        <div data-fx="subir" data-fx-atraso="150">
+          <button class="yt" type="button" data-yt="sSIemEi92aE" aria-label="Assistir: Rock Beat Show 1500, Que País é Esse, Santo André 2019">
+            <img src="https://i.ytimg.com/vi_webp/sSIemEi92aE/hqdefault.webp" alt="" width="480" height="360" loading="lazy" decoding="async">
+            <span class="play" aria-hidden="true"></span>
+          </button>
+          <p class="legenda">Rock Beat Show 1500: “Que País é Esse?”, Santo André 2019.</p>
+        </div>
+      </div>
+      <ul class="marcas" aria-label="Marcas parceiras">
+        <li><a href="http://www.pearl-latinamerica.com/" target="_blank" rel="noopener"><img src="../comum/marcas/pearl.webp" alt="Pearl" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="https://br.yamaha.com/index.html" target="_blank" rel="noopener"><img src="../comum/marcas/yamaha.webp" alt="Yamaha" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://paiste.com/" target="_blank" rel="noopener"><img src="../comum/marcas/paiste.webp" alt="Paiste" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://www2.musical-express.com.br/beta/evans/" target="_blank" rel="noopener"><img src="../comum/marcas/evans.webp" alt="Evans" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://www2.musical-express.com.br/beta/promark/" target="_blank" rel="noopener"><img src="../comum/marcas/promark.webp" alt="Promark" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="https://odery.com.br/" target="_blank" rel="noopener"><img src="../comum/marcas/odery.webp" alt="Odery" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://www.tagima.com.br/" target="_blank" rel="noopener"><img src="../comum/marcas/tagima.webp" alt="Tagima" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://orioncymbals.com.br/" target="_blank" rel="noopener"><img src="../comum/marcas/orion.webp" alt="Orion Cymbals" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://krestcymbals.com.br/web/" target="_blank" rel="noopener"><img src="../comum/marcas/krest.webp" alt="Krest Cymbals" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://www.phxinstrumentos.com.br/" target="_blank" rel="noopener"><img src="../comum/marcas/phx.webp" alt="PHX" width="195" height="80" loading="lazy"></a></li>
+      </ul>
+      <div class="cta-bloco" style="margin-top:var(--e5)">
+        <a class="cta" data-cta href="https://www.baterasbeat.com.br/quem-somos/contato/faleconosco">Agendar aula cortesia</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · PICO: a cortina abre, a banda entra, a plateia chega -->
+  <section class="show" id="show" aria-labelledby="t-show" data-fx-fixa data-fx-altura="5">
+    <div class="fx-palco">
+      <div class="palco-tela" aria-hidden="true">
+        <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice">
+          <defs>
+            <linearGradient id="coneB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+            <linearGradient id="coneV" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F50505" stop-opacity=".7"/><stop offset="1" stop-color="#F50505" stop-opacity="0"/></linearGradient>
+            <linearGradient id="coneA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFCC00" stop-opacity=".55"/><stop offset="1" stop-color="#FFCC00" stop-opacity="0"/></linearGradient>
+          <!-- corpo de pé (pés em y=0); a cor do contorno vem de "color" -->
+            <g id="corpo">
+              <path d="M-30,-150 L-6,-150 L-34,-4 L-64,-4 Z" fill="#000" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M6,-150 L30,-150 L64,-4 L34,-4 Z" fill="#000" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+              <ellipse cx="-54" cy="-3" rx="24" ry="8" fill="#000" stroke="currentColor" stroke-width="3"/>
+              <ellipse cx="54" cy="-3" rx="24" ry="8" fill="#000" stroke="currentColor" stroke-width="3"/>
+              <path d="M-44,-262 C-48,-220 -38,-182 -34,-146 L34,-146 C38,-182 48,-220 44,-262 C26,-274 -26,-274 -44,-262 Z" fill="#000" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+              <rect x="-10" y="-286" width="20" height="22" fill="#000"/>
+              <circle cx="0" cy="-307" r="26" fill="#000" stroke="currentColor" stroke-width="3"/>
+            </g>
+            <!-- guitarra elétrica (corpo com recorte, braço para +x) -->
+            <g id="guitarra">
+              <rect x="68" y="-7" width="190" height="14" rx="3" fill="#2A0000" stroke="#000" stroke-width="2"/>
+              <g stroke="#555" stroke-width="2"><line x1="100" y1="-7" x2="100" y2="7"/><line x1="130" y1="-7" x2="130" y2="7"/><line x1="158" y1="-7" x2="158" y2="7"/><line x1="184" y1="-7" x2="184" y2="7"/><line x1="208" y1="-7" x2="208" y2="7"/><line x1="230" y1="-7" x2="230" y2="7"/></g>
+              <path d="M256,-9 L300,-20 L306,14 L256,9 Z" fill="#000" stroke="#F50505" stroke-width="2" stroke-linejoin="round"/>
+              <g fill="#E8E8E8"><circle cx="270" cy="-17" r="4"/><circle cx="284" cy="-21" r="4"/><circle cx="298" cy="-25" r="4"/><circle cx="270" cy="15" r="4"/><circle cx="284" cy="17" r="4"/><circle cx="298" cy="19" r="4"/></g>
+              <path d="M-95,0 C-95,-46 -60,-62 -25,-55 C0,-50 10,-38 30,-40 C50,-42 62,-60 82,-54 C96,-50 92,-36 78,-30 C66,-24 60,-14 64,-4 C70,8 90,20 86,38 C82,56 56,60 36,50 C16,42 0,54 -26,57 C-62,63 -95,46 -95,0 Z" fill="#F50505" stroke="#000" stroke-width="3"/>
+              <path d="M-70,10 C-60,40 -20,44 0,30 L10,0 L-40,-10 Z" fill="#000" opacity=".85"/>
+              <rect x="-6" y="-18" width="16" height="36" rx="3" fill="#E8E8E8" stroke="#000" stroke-width="2"/>
+              <rect x="26" y="-17" width="16" height="34" rx="3" fill="#E8E8E8" stroke="#000" stroke-width="2"/>
+              <rect x="-40" y="-14" width="10" height="28" rx="2" fill="#BDBDBD"/>
+              <g stroke="#E8E8E8" stroke-width="1"><line x1="-35" y1="-5" x2="300" y2="-5"/><line x1="-35" y1="0" x2="300" y2="0"/><line x1="-35" y1="5" x2="300" y2="5"/></g>
+              <circle cx="-62" cy="30" r="6" fill="#FFCC00"/><circle cx="-44" cy="40" r="6" fill="#FFCC00"/>
+            </g>
+            <!-- baixo (4 cordas, braço longo) -->
+            <g id="baixo">
+              <rect x="66" y="-8" width="250" height="16" rx="3" fill="#2A0000" stroke="#000" stroke-width="2"/>
+              <g stroke="#555" stroke-width="2"><line x1="104" y1="-8" x2="104" y2="8"/><line x1="140" y1="-8" x2="140" y2="8"/><line x1="174" y1="-8" x2="174" y2="8"/><line x1="206" y1="-8" x2="206" y2="8"/><line x1="236" y1="-8" x2="236" y2="8"/><line x1="264" y1="-8" x2="264" y2="8"/><line x1="290" y1="-8" x2="290" y2="8"/></g>
+              <path d="M314,-10 L372,-14 C380,-14 382,-4 376,0 L372,10 L314,10 Z" fill="#000" stroke="#FFCC00" stroke-width="2" stroke-linejoin="round"/>
+              <g fill="#E8E8E8"><circle cx="330" cy="-18" r="5"/><circle cx="346" cy="-19" r="5"/><circle cx="362" cy="-20" r="5"/><circle cx="376" cy="-20" r="5"/></g>
+              <path d="M-100,4 C-104,-44 -66,-66 -28,-58 C-2,-52 12,-44 34,-50 C54,-56 70,-74 92,-66 C104,-60 98,-46 84,-38 C70,-30 66,-18 70,-6 C76,8 98,22 90,42 C82,62 54,62 30,52 C8,44 -8,58 -36,60 C-72,62 -98,46 -100,4 Z" fill="#FFCC00" stroke="#000" stroke-width="3"/>
+              <path d="M-60,-40 C-30,-48 10,-36 20,-16 L20,20 C-10,40 -50,44 -76,30 Z" fill="#000" opacity=".9"/>
+              <rect x="-8" y="-20" width="14" height="22" rx="3" fill="#E8E8E8" stroke="#000" stroke-width="2"/>
+              <rect x="8" y="-2" width="14" height="22" rx="3" fill="#E8E8E8" stroke="#000" stroke-width="2"/>
+              <rect x="-50" y="-16" width="12" height="32" rx="2" fill="#BDBDBD"/>
+              <g stroke="#E8E8E8" stroke-width="1.5"><line x1="-44" y1="-6" x2="372" y2="-6"/><line x1="-44" y1="-2" x2="372" y2="-2"/><line x1="-44" y1="2" x2="372" y2="2"/><line x1="-44" y1="6" x2="372" y2="6"/></g>
+            </g>
+            <!-- amplificador (cabeçote + caixa) -->
+            <pattern id="tela" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#1E1E1E"/><path d="M0,10 L10,0 M-2,2 L2,-2 M8,12 L12,8" stroke="#2A2A2A" stroke-width="2"/></pattern>
+            <g id="ampli">
+              <rect x="0" y="-232" width="150" height="40" rx="4" fill="#111" stroke="#333" stroke-width="3"/>
+              <g fill="#FFCC00"><circle cx="22" cy="-206" r="5"/><circle cx="42" cy="-206" r="5"/><circle cx="62" cy="-206" r="5"/><circle cx="82" cy="-206" r="5"/><circle cx="102" cy="-206" r="5"/></g>
+              <rect x="114" y="-224" width="26" height="8" rx="2" fill="#E8E8E8"/>
+              <rect x="-6" y="-190" width="162" height="190" rx="6" fill="#111" stroke="#333" stroke-width="3"/>
+              <rect x="8" y="-176" width="134" height="162" rx="4" fill="url(#tela)"/>
+            </g>
+          </defs>
+          <rect width="1600" height="900" fill="#0A0000"/>
+          <rect class="tl luz" style="--a:.12;--b:.3" width="1600" height="640" fill="#2A0000"/>
+          <rect y="640" width="1600" height="260" fill="#161616"/>
+          <rect y="636" width="1600" height="8" fill="#B30000"/>
+          <rect width="1600" height="34" fill="#111"/>
+          <!-- luzes -->
+          <g class="tl luz" style="--a:.12;--b:.3">
+            <polygon points="360,34 410,34 560,660 190,660" fill="url(#coneV)"/>
+            <polygon points="620,34 670,34 780,660 470,660" fill="url(#coneB)"/>
+            <polygon points="900,34 950,34 1120,660 760,660" fill="url(#coneA)"/>
+            <polygon points="1210,34 1260,34 1420,660 1060,660" fill="url(#coneV)"/>
+          </g>
+          <!-- amplificadores no fundo -->
+          <g class="tl luz" style="--a:.12;--b:.3">
+            <use href="#ampli" transform="translate(110,640)"/>
+            <use href="#ampli" transform="translate(1390,640)"/>
+          </g>
+          <!-- guitarrista: guitarra elétrica vermelha, mão na palheta e mão no braço -->
+          <g class="tl entra" style="--a:.28;--b:.38">
+            <g transform="translate(330,640)" color="#F50505">
+              <path d="M-26,-300 C-40,-300 -44,-270 -40,-246 L-28,-262 Z M26,-300 C40,-300 44,-270 40,-246 L28,-262 Z" fill="#000" stroke="currentColor" stroke-width="2"/>
+              <use href="#corpo"/>
+              <path d="M-40,-258 L40,-150" stroke="#2A2A2A" stroke-width="8"/>
+              <use href="#guitarra" transform="translate(-18,-168) rotate(-24) scale(.95)"/>
+              <path d="M-36,-252 L-64,-200 L-20,-165" fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M-36,-252 L-64,-200 L-20,-165" fill="none" stroke="#000" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M36,-252 L96,-212 L148,-240" fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M36,-252 L96,-212 L148,-240" fill="none" stroke="#000" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="-20" cy="-165" r="11" fill="#000" stroke="currentColor" stroke-width="3"/>
+              <circle cx="148" cy="-240" r="11" fill="#000" stroke="currentColor" stroke-width="3"/>
+              <path d="M-100,-150 C-160,-120 -150,-40 -200,-20" fill="none" stroke="#111" stroke-width="5"/>
+            </g>
+          </g>
+          <!-- vocal: microfone no pedestal, punho para cima -->
+          <g class="tl entra" style="--a:.38;--b:.48">
+            <g transform="translate(620,640)" color="#FFCC00">
+              <use href="#corpo"/>
+              <path d="M36,-252 L74,-312 L64,-384" fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M36,-252 L74,-312 L64,-384" fill="none" stroke="#000" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="64" cy="-390" r="14" fill="#000" stroke="currentColor" stroke-width="3"/>
+              <!-- pedestal -->
+              <path d="M40,0 L40,-236 M40,0 L8,-2 M40,0 L72,-2 M40,0 L44,8" stroke="#BDBDBD" stroke-width="5" stroke-linecap="round"/>
+              <path d="M40,-236 L14,-280" stroke="#BDBDBD" stroke-width="5" stroke-linecap="round"/>
+              <rect x="-2" y="-296" width="30" height="13" rx="6" transform="rotate(-30 13 -290)" fill="#E8E8E8" stroke="#000" stroke-width="2"/>
+              <circle cx="4" cy="-298" r="9" fill="#BDBDBD" stroke="#000" stroke-width="2"/>
+              <path d="M-36,-252 L-30,-200 L10,-282" fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M-36,-252 L-30,-200 L10,-282" fill="none" stroke="#000" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="10" cy="-282" r="11" fill="#000" stroke="currentColor" stroke-width="3"/>
+              <path d="M10,-238 C60,-180 30,-80 80,0" fill="none" stroke="#111" stroke-width="4"/>
+            </g>
+          </g>
+          <!-- bateria completa (o bumbo leva o logotipo original) + baterista com baquetas -->
+          <g class="tl entra" style="--a:.48;--b:.58">
+            <g color="#F50505">
+              <!-- baterista sentado atrás do kit -->
+              <path d="M916,452 C930,440 990,440 1004,452 L1012,560 L908,560 Z" fill="#000" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+              <rect x="951" y="424" width="18" height="20" fill="#000"/>
+              <circle cx="960" cy="410" r="26" fill="#000" stroke="currentColor" stroke-width="3"/>
+              <path d="M922,458 L872,500 L846,462" fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M922,458 L872,500 L846,462" fill="none" stroke="#000" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M998,458 L1050,496 L1076,458" fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M998,458 L1050,496 L1076,458" fill="none" stroke="#000" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="846" y1="462" x2="806" y2="392" stroke="#E8E8E8" stroke-width="6" stroke-linecap="round"/>
+              <line x1="1076" y1="458" x2="1120" y2="390" stroke="#E8E8E8" stroke-width="6" stroke-linecap="round"/>
+              <circle cx="846" cy="462" r="11" fill="#000" stroke="currentColor" stroke-width="3"/>
+              <circle cx="1076" cy="458" r="11" fill="#000" stroke="currentColor" stroke-width="3"/>
+            </g>
+            <!-- pratos e estantes -->
+            <g stroke="#777" stroke-width="4" stroke-linecap="round">
+              <path d="M760,640 L770,402 M740,640 L760,600 L780,640"/>
+              <path d="M1170,640 L1160,420 M1150,640 L1166,600 L1190,640"/>
+              <path d="M712,640 L712,496 M694,640 L712,604 L730,640"/>
+              <path d="M820,640 L830,562 M806,640 L830,600 L852,640"/>
+            </g>
+            <ellipse cx="770" cy="400" rx="66" ry="9" transform="rotate(12 770 400)" fill="#FFCC00" stroke="#000" stroke-width="2"/>
+            <ellipse cx="770" cy="399" rx="12" ry="4" transform="rotate(12 770 400)" fill="#E8E8E8"/>
+            <ellipse cx="1160" cy="418" rx="74" ry="10" transform="rotate(-8 1160 418)" fill="#FFCC00" stroke="#000" stroke-width="2"/>
+            <ellipse cx="1160" cy="417" rx="13" ry="4" transform="rotate(-8 1160 418)" fill="#E8E8E8"/>
+            <ellipse cx="712" cy="500" rx="46" ry="6" fill="#FFCC00" stroke="#000" stroke-width="2"/>
+            <ellipse cx="712" cy="492" rx="46" ry="6" fill="#FFCC00" stroke="#000" stroke-width="2"/>
+            <!-- caixa -->
+            <rect x="794" y="540" width="72" height="28" fill="#B30000" stroke="#000" stroke-width="2"/>
+            <g fill="#E8E8E8"><rect x="802" y="546" width="5" height="16"/><rect x="818" y="546" width="5" height="16"/><rect x="834" y="546" width="5" height="16"/><rect x="850" y="546" width="5" height="16"/></g>
+            <ellipse cx="830" cy="540" rx="36" ry="8" fill="#E8E8E8" stroke="#BDBDBD" stroke-width="3"/>
+            <!-- tons -->
+            <rect x="882" y="468" width="58" height="40" fill="#B30000" stroke="#000" stroke-width="2"/>
+            <g fill="#E8E8E8"><rect x="890" y="476" width="5" height="22"/><rect x="926" y="476" width="5" height="22"/></g>
+            <ellipse cx="911" cy="468" rx="29" ry="8" fill="#E8E8E8" stroke="#BDBDBD" stroke-width="3"/>
+            <rect x="980" y="468" width="62" height="42" fill="#B30000" stroke="#000" stroke-width="2"/>
+            <g fill="#E8E8E8"><rect x="988" y="476" width="5" height="24"/><rect x="1028" y="476" width="5" height="24"/></g>
+            <ellipse cx="1011" cy="468" rx="31" ry="8" fill="#E8E8E8" stroke="#BDBDBD" stroke-width="3"/>
+            <!-- surdo -->
+            <path d="M1056,628 L1050,644 M1124,628 L1130,644" stroke="#777" stroke-width="4"/>
+            <rect x="1052" y="546" width="76" height="86" fill="#B30000" stroke="#000" stroke-width="2"/>
+            <g fill="#E8E8E8"><rect x="1060" y="556" width="5" height="64"/><rect x="1088" y="556" width="5" height="64"/><rect x="1114" y="556" width="5" height="64"/></g>
+            <ellipse cx="1090" cy="546" rx="38" ry="9" fill="#E8E8E8" stroke="#BDBDBD" stroke-width="3"/>
+            <!-- bumbo -->
+            <path d="M890,630 L874,646 M1030,630 L1046,646" stroke="#777" stroke-width="5"/>
+            <circle cx="960" cy="572" r="82" fill="#111" stroke="#B30000" stroke-width="12"/>
+            <circle cx="960" cy="572" r="74" fill="none" stroke="#E8E8E8" stroke-width="2"/>
+            <image href="../comum/logo.png" x="902" y="514" width="116" height="116"/>
+          </g>
+          <!-- baixista: baixo amarelo, espelhado (o braço aponta para o centro do palco) -->
+          <g class="tl entra" style="--a:.58;--b:.68">
+            <g transform="translate(1290,640) scale(-1,1)" color="#F50505">
+              <path d="M-28,-322 L28,-322 L32,-312 L-32,-312 Z M-24,-330 C-14,-344 14,-344 24,-330 L24,-318 L-24,-318 Z" fill="#000" stroke="currentColor" stroke-width="2"/>
+              <use href="#corpo"/>
+              <path d="M-40,-258 L40,-150" stroke="#2A2A2A" stroke-width="8"/>
+              <use href="#baixo" transform="translate(-18,-166) rotate(-20) scale(.9)"/>
+              <path d="M-36,-252 L-66,-198 L-22,-166" fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M-36,-252 L-66,-198 L-22,-166" fill="none" stroke="#000" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M36,-252 L110,-206 L178,-236" fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M36,-252 L110,-206 L178,-236" fill="none" stroke="#000" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="-22" cy="-166" r="11" fill="#000" stroke="currentColor" stroke-width="3"/>
+              <circle cx="178" cy="-236" r="11" fill="#000" stroke="currentColor" stroke-width="3"/>
+              <path d="M-104,-150 C-150,-110 -110,-40 -120,-20" fill="none" stroke="#111" stroke-width="5"/>
+            </g>
+          </g>
+          <!-- plateia: 3 fileiras geradas no script -->
+          <g class="tl fileira" style="--a:.62;--b:.74" data-fileira="0"></g>
+          <g class="tl fileira" style="--a:.66;--b:.78" data-fileira="1"></g>
+          <g class="tl fileira" style="--a:.7;--b:.82" data-fileira="2"></g>
+        </svg>
+      </div>
+      <div class="cortina esq"></div>
+      <div class="cortina dir"></div>
+      <div class="bambinela"></div>
+      <div class="grito tl" style="--a:.74;--b:.84">
+        <h2 id="t-show">Agora imagina você aí.</h2>
+        <p>Esse palco começa com 1 aula.</p>
+      </div>
+      <p class="legenda-show" aria-hidden="true">continua rolando…</p>
+    </div>
+  </section>
+
+  <!-- oferta -->
+  <section class="secao oferta" aria-labelledby="t-oferta">
+    <div class="miolo">
+      <div>
+        <p class="rotulo" style="color:var(--amarelo)">O ingresso</p>
+        <h2 id="t-oferta" data-fx="subir">1 aula. <em>De graça.</em><br>Sem levar nada.</h2>
+      </div>
+      <div data-fx="direita">
+        <ul class="inclui">
+          <li>Aula cortesia de 1 hora</li>
+          <li>Na unidade mais perto de você</li>
+          <li>Instrumento e professor estão lá</li>
+          <li data-bonus-caixa hidden>Na matrícula: <span class="bonus-tag" data-bonus hidden></span></li>
+        </ul>
+        <div class="cta-bloco" style="margin-top:var(--e4)">
+          <a class="cta" data-cta href="https://www.baterasbeat.com.br/quem-somos/contato/faleconosco">Agendar aula cortesia</a>
+          <p class="risco-zero"><span>1 hora</span><span>Não precisa levar nada</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · Dúvidas -->
+  <section class="secao duvidas" id="duvidas" aria-labelledby="t-duvidas">
+    <div class="miolo grade">
+      <div>
+        <p class="rotulo" style="color:var(--amarelo)">Dúvidas</p>
+        <h2 id="t-duvidas" data-fx="subir">Rapidinho.</h2>
+      </div>
+      <div class="faq">
+        <details><summary>Nunca toquei nada. Dá?</summary><p>Dá. A aula cortesia é pra isso: 1 hora com professor pra você descobrir na prática.</p></details>
+        <details><summary>Preciso ter instrumento?</summary><p>Não precisa levar nada.</p></details>
+        <details><summary>Quais instrumentos tem?</summary><p>Bateria, guitarra, violão, baixo e canto, entre outros. Varia por unidade; no WhatsApp a gente confirma.</p></details>
+        <details><summary>E esse palco existe mesmo?</summary><p>Existe. Os alunos da rede tocam em eventos como o Rock Beat Show e o Bateras 100% Brasil, que reuniu 156 bateras em Santo André.</p></details>
+        <details><summary>Quanto custa?</summary><p>A aula cortesia não tem custo. Os valores da mensalidade variam por unidade e são informados no atendimento.<span data-bonus-caixa hidden> Na matrícula: <span data-bonus hidden></span>.</span></p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- bis -->
+  <section class="bis" id="bis" data-final aria-labelledby="t-bis">
+    <div class="miolo" style="width:min(100% - 32px, var(--largura))">
+      <p class="rotulo">bis!</p>
+      <h2 id="t-bis" data-fx="palavras">Sobe no palco.</h2>
+      <div class="cta-bloco centro">
+        <a class="cta" data-cta href="https://www.baterasbeat.com.br/quem-somos/contato/faleconosco">Agendar aula cortesia</a>
+        <p class="risco-zero" style="justify-content:center"><span>1 hora</span><span>Não precisa levar nada</span><span>Agendamento pelo WhatsApp</span></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="miolo" style="width:min(100% - 32px, 1180px)">
+    <img src="../comum/logo.png" alt="Bateras Beat Music School" width="64" height="64" loading="lazy">
+    <ul>
+      <li><a href="https://www.baterasbeat.com.br/quem-somos">Quem somos</a></li>
+      <li><a href="https://www.baterasbeat.com.br/bateras-tv">Bateras TV</a></li>
+      <li><a href="https://franquias.baterasbeat.com.br/">Seja um franqueado</a></li>
+      <li><a href="https://www.baterasbeat.com.br/quem-somos/privacidade">Privacidade</a></li>
+      <li><a href="http://www.instagram.com/baterasbeatoficial">Instagram</a></li>
+      <li><a href="https://www.youtube.com/channel/UCgHixOxzIkiMCEI0_m3Axuw">YouTube</a></li>
+    </ul>
+    <p>© 2026 Bateras Beat. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<div class="barra-cta" aria-hidden="true">
+  <a class="cta" data-cta tabindex="-1" href="https://www.baterasbeat.com.br/quem-somos/contato/faleconosco">Agendar aula cortesia</a>
+  <small>1 hora · não precisa levar nada</small>
+</div>
+
+<script src="../comum/sites-incriveis.js" defer></script>
+<script src="../comum/base.js" defer></script>
+<script>
+/* Página C — plateia desenhada (silhuetas em 3 fileiras). As cortinas, luzes e
+   entradas da banda são CSS puro lendo --progresso da cena (classe .tl). */
+document.addEventListener("DOMContentLoaded", function () {
+  var NS = "http://www.w3.org/2000/svg";
+  var s = 11;
+  function sorte() { s = (s * 9301 + 49297) % 233280; return s / 233280; }
+  // o setlist recolhe enquanto a cortina está aberta no show
+  var show = document.getElementById("show");
+  if ("IntersectionObserver" in window) new IntersectionObserver(function (e) {
+    document.documentElement.classList.toggle("no-show", e[0].isIntersecting);
+  }, { rootMargin: "-40% 0px -40% 0px" }).observe(show);
+
+  document.querySelectorAll("[data-fileira]").forEach(function (g) {
+    var f = +g.dataset.fileira;
+    var base = 760 + f * 70, passo = 70 - f * 6, r = 26 + f * 5;
+    var cor = ["#0A0A0A", "#050505", "#000"][f];
+    for (var x = -20 + (f % 2) * 30; x < 1640; x += passo) {
+      var y = base + sorte() * 14;
+      var corpo = document.createElementNS(NS, "path");
+      corpo.setAttribute("d", "M" + (x - r * 1.6) + " " + (y + r * 3) + " Q" + x + " " + (y + r * 0.6) + " " + (x + r * 1.6) + " " + (y + r * 3) + " Z");
+      corpo.setAttribute("fill", cor);
+      var cabeca = document.createElementNS(NS, "circle");
+      cabeca.setAttribute("cx", x); cabeca.setAttribute("cy", y); cabeca.setAttribute("r", r);
+      cabeca.setAttribute("fill", cor);
+      cabeca.setAttribute("stroke", "#2A0000"); cabeca.setAttribute("stroke-width", "2");
+      g.appendChild(corpo); g.appendChild(cabeca);
+      if (sorte() > 0.55) {
+        var lado = sorte() > 0.5 ? 1 : -1;
+        var braco = document.createElementNS(NS, "path");
+        braco.setAttribute("d", "M" + (x + lado * r) + " " + (y + r * 1.2) + " L" + (x + lado * r * 1.9) + " " + (y - r * 2.6));
+        braco.setAttribute("stroke", cor); braco.setAttribute("stroke-width", r * 0.55); braco.setAttribute("stroke-linecap", "round");
+        g.insertBefore(braco, corpo);
+      }
+    }
+  });
+});
+</script>
+</body>
+</html>

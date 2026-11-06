@@ -1,0 +1,201 @@
+/* Bateras Beat — base comum às 3 landing pages.
+ * Paleta original do site (hex) + variações de luminosidade.
+ * Cada página define --fundo, --tinta, --tinta-suave, --foco e as fontes. */
+
+:root {
+  --vermelho: #F50505;          /* títulos do site original · acento e CTA */
+  --vermelho-escuro: #B30000;   /* cabeçalho do site original · hover */
+  --vermelho-noite: #2A0000;    /* variação escura do #B30000 */
+  --preto: #000000;
+  --carvao: #111111;            /* variações do preto */
+  --grafite: #1E1E1E;
+  --branco: #FFFFFF;
+  --cinza: #E8E8E8;             /* fundo claro do site original */
+  --cinza-medio: #BDBDBD;
+  --cinza-texto: #555555;       /* 7,4:1 sobre branco */
+  --amarelo: #FFCC00;           /* hover do rodapé original · só destaque */
+
+  --fundo: var(--preto);
+  --tinta: var(--branco);
+  --tinta-suave: #C9C9C9;
+  --foco: var(--amarelo);
+
+  --e1: 8px; --e2: 16px; --e3: 24px; --e4: 40px; --e5: 64px; --e6: 104px;
+  --largura: 1180px;
+  --topo-altura: 72px;
+  --barra-altura: 76px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; overflow-x: clip; background: var(--fundo); --fx-fundo: var(--fundo); --fx-tinta: var(--tinta); }
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--tinta);
+  font-family: var(--fonte-texto, system-ui, sans-serif);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  overflow-x: clip;
+}
+img, svg { display: block; max-width: 100%; }
+h1, h2, h3 { margin: 0; font-family: var(--fonte-display); font-weight: 400; line-height: 1.05; }
+p { margin: 0; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+
+:focus-visible { outline: 3px solid var(--foco); outline-offset: 3px; border-radius: 4px; }
+
+.pular {
+  position: absolute; left: -9999px; top: 8px; z-index: 100;
+  background: var(--branco); color: var(--preto); padding: 12px 16px;
+}
+.pular:focus { left: 16px; }
+
+.miolo { width: min(100% - 32px, var(--largura)); margin-inline: auto; }
+.rotulo {
+  font-family: var(--fonte-texto);
+  font-size: 0.8125rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- CTA principal: mesmo texto, mesma cor, a página inteira ---------- */
+.cta {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 54px; padding: 14px 28px;
+  background: var(--vermelho); color: var(--branco);
+  font-family: var(--fonte-texto); font-size: 1.1875rem; font-weight: 800; letter-spacing: 0.01em;
+  text-decoration: none; border-radius: 999px; border: 0;
+  box-shadow: 0 0 0 0 rgba(245, 5, 5, 0);
+  transition: background 0.2s, transform 0.12s, box-shadow 0.25s;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.cta:hover { background: var(--vermelho-escuro); box-shadow: 0 8px 24px -8px rgba(245, 5, 5, 0.55); }
+.cta:active { transform: scale(0.97); }
+.cta svg { width: 20px; height: 20px; flex: none; }
+.cta-bloco { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.cta-bloco.centro { align-items: center; text-align: center; }
+.risco-zero { font-size: 0.875rem; color: var(--tinta-suave); display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.risco-zero span::before { content: "✓ "; color: var(--vermelho); font-weight: 700; }
+.bonus-tag {
+  display: inline-block; padding: 4px 12px; border-radius: 4px;
+  background: var(--amarelo); color: var(--preto); font-weight: 800; font-size: 0.9375rem;
+}
+
+/* secundário discreto */
+.link-discreto {
+  display: inline-flex; align-items: center; min-height: 44px;
+  color: var(--tinta-suave); text-decoration: underline; text-underline-offset: 4px;
+}
+.link-discreto:hover { color: var(--tinta); }
+
+/* ---------- topo fixo que encolhe ---------- */
+.topo {
+  position: fixed; inset: 0 0 auto 0; z-index: 50;
+  height: var(--topo-altura);
+  display: flex; align-items: center;
+  transition: height 0.25s, background 0.25s, box-shadow 0.25s;
+}
+.topo .miolo { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.topo .marca img { width: 56px; height: 56px; transition: width 0.25s, height 0.25s; }
+.topo.encolhido { height: 56px; }
+.topo.encolhido .marca img { width: 42px; height: 42px; }
+.topo .marca { display: inline-flex; min-height: 44px; align-items: center; }
+.topo nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 4px; }
+.topo nav a {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px;
+  text-decoration: none; font-size: 0.9375rem; font-weight: 600; border-radius: 999px;
+  transition: background 0.2s, color 0.2s;
+}
+/* 19px negrito = texto grande (AA 3:1) para branco sobre #F50505 */
+.topo .cta { min-height: 44px; padding: 8px 18px; font-size: 1.1875rem; }
+.menu-botao {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 44px; min-height: 44px; background: transparent; border: 1px solid currentColor;
+  border-radius: 999px; padding: 0 14px; font-weight: 700; font-size: 0.875rem; cursor: pointer;
+}
+.topo-acoes { display: flex; align-items: center; gap: 8px; }
+@media (max-width: 899px) {
+  .topo nav {
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--fundo); padding: 8px 16px 16px;
+    border-bottom: 1px solid rgba(128,128,128,.3);
+    display: none;
+  }
+  .topo nav.aberto { display: block; }
+  .topo nav ul { flex-direction: column; }
+  .topo .cta-topo { display: none; }
+}
+@media (min-width: 900px) {
+  .menu-botao { display: none; }
+}
+
+/* ---------- barra de CTA no celular ---------- */
+.barra-cta {
+  position: fixed; inset: auto 0 0 0; z-index: 60;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  background: var(--fundo);
+  border-top: 1px solid rgba(128,128,128,.35);
+  display: flex; align-items: center; gap: 12px;
+  transform: translateY(110%); transition: transform 0.3s;
+}
+.barra-cta.visivel { transform: none; }
+.barra-cta .cta { flex: 1; min-height: 52px; padding: 0 14px; font-size: 1.1875rem; white-space: nowrap; }
+.barra-cta small { font-size: 0.75rem; color: var(--tinta-suave); line-height: 1.3; max-width: 7.5em; }
+@media (max-width: 359px) { .barra-cta small { display: none; } }
+@media (max-width: 767px) {
+  body { padding-bottom: var(--barra-altura); } /* a barra nunca cobre conteúdo */
+}
+@media (min-width: 768px) { .barra-cta { display: none; } }
+
+/* ---------- vídeo leve ---------- */
+.yt {
+  position: relative; display: block; width: 100%; aspect-ratio: 16 / 9;
+  padding: 0; border: 0; background: var(--carvao); cursor: pointer; overflow: hidden; border-radius: 12px;
+}
+.yt img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s, opacity 0.3s; opacity: .85; }
+.yt:hover img { transform: scale(1.03); opacity: 1; }
+.yt .play {
+  position: absolute; inset: 0; margin: auto; width: 72px; height: 72px; border-radius: 50%;
+  background: var(--vermelho); display: grid; place-items: center;
+  transition: transform 0.15s;
+}
+.yt:hover .play { transform: scale(1.08); }
+.yt:active .play { transform: scale(0.95); }
+.yt .play::after { content: ""; border-left: 22px solid #fff; border-top: 13px solid transparent; border-bottom: 13px solid transparent; margin-left: 6px; }
+.yt-frame { width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 12px; display: block; }
+.legenda { font-size: 0.9375rem; color: var(--tinta-suave); margin-top: 10px; }
+
+/* ---------- marcas parceiras ---------- */
+.marcas { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 0; }
+.marcas a { display: block; border-radius: 10px; transition: transform 0.15s, opacity 0.2s; opacity: .9; }
+.marcas a:hover { opacity: 1; transform: translateY(-2px); }
+.marcas img { width: 120px; min-width: 108px; height: auto; aspect-ratio: 195 / 80; border-radius: 10px; }
+
+/* ---------- FAQ ---------- */
+.faq details { border-top: 1px solid rgba(128,128,128,.35); }
+.faq details:last-child { border-bottom: 1px solid rgba(128,128,128,.35); }
+.faq summary {
+  list-style: none; cursor: pointer; min-height: 56px; padding: 16px 44px 16px 0; position: relative;
+  font-weight: 700; font-size: 1.125rem;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+"; position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+  font-size: 1.5rem; font-weight: 400; transition: transform 0.2s;
+}
+.faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+.faq summary:hover { color: var(--vermelho); }
+.faq details p { padding: 0 0 20px; color: var(--tinta-suave); max-width: 62ch; }
+
+/* ---------- rodapé ---------- */
+.rodape { padding: var(--e5) 0 var(--e4); font-size: 0.9375rem; color: var(--tinta-suave); }
+.rodape .miolo { display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center; }
+.rodape ul { list-style: none; display: flex; flex-wrap: wrap; gap: 4px 8px; padding: 0; margin: 0; }
+.rodape a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 6px; }
+.rodape a:hover { color: var(--tinta); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}

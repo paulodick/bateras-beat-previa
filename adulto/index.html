@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Aula de música para adultos · Bateras Beat Music School</title>
+<meta name="description" content="Sempre quis tocar? Agende uma aula cortesia de 1 hora na Bateras Beat, a rede de escola de música que mais cresce no Brasil. Não precisa levar nada. Você no palco em 3 meses!">
+<meta property="og:title" content="Aula de música para adultos · Bateras Beat">
+<meta property="og:description" content="Aula cortesia de 1 hora. Não precisa levar nada.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="../comum/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="../comum/sites-incriveis.css">
+<link rel="stylesheet" href="../comum/base.css">
+<style>
+  :root {
+    --fonte-display: "DM Serif Display", Georgia, serif;
+    --fonte-texto: "Inter", system-ui, sans-serif;
+    --fundo: #000;
+    --tinta: #fff;
+    --tinta-suave: #BFBFBF;
+  }
+  .topo { color: #fff; }
+  .topo.encolhido { background: rgba(0,0,0,.92); box-shadow: 0 1px 0 #2A0000; }
+  .topo nav a:hover, .topo nav a[aria-current] { background: #2A0000; color: #fff; }
+  .topo nav a[aria-current] { box-shadow: inset 0 -2px 0 var(--vermelho); }
+
+  h2 { font-size: clamp(2.25rem, 6vw, 4.25rem); }
+  .secao { padding: var(--e6) 0; position: relative; }
+
+  /* 1 · abertura: a garagem às 23h */
+  .abertura {
+    min-height: 100svh; display: flex; align-items: center;
+    padding: calc(var(--topo-altura) + 24px) 0 48px; position: relative; overflow: hidden;
+  }
+  .abertura .luz {
+    position: absolute; width: 90vmax; height: 90vmax; right: -35vmax; top: -40vmax; pointer-events: none;
+    background: radial-gradient(closest-side, rgba(179,0,0,.42), rgba(179,0,0,0));
+  }
+  .abertura .porta {
+    position: absolute; inset: auto 0 0 0; height: 46%; pointer-events: none; opacity: .5;
+    background: repeating-linear-gradient(180deg, #111 0 26px, #000 26px 30px);
+    -webkit-mask-image: linear-gradient(transparent, #000 70%);
+            mask-image: linear-gradient(transparent, #000 70%);
+  }
+  .abertura .miolo { position: relative; }
+  .rec { display: inline-flex; align-items: center; gap: 10px; color: #fff; margin-bottom: var(--e3); }
+  .rec i { width: 12px; height: 12px; border-radius: 50%; background: var(--vermelho); box-shadow: 0 0 0 0 rgba(245,5,5,.6); animation: rec 1.6s infinite; }
+  @keyframes rec { 50% { box-shadow: 0 0 0 8px rgba(245,5,5,0); opacity: .55; } }
+  .abertura h1 { font-size: clamp(2.5rem, 4.2vw + 1rem, 5.25rem); max-width: 17ch; letter-spacing: -0.01em; }
+  @media (max-height: 700px) and (min-width: 600px) { .abertura h1 { font-size: clamp(2.25rem, 6.5vh + 0.5rem, 4rem); } .promessa { margin: 16px 0 24px; } }
+  .abertura h1 em { color: var(--vermelho); font-style: italic; }
+  .promessa { font-size: clamp(1.25rem, 3vw, 1.625rem); margin: var(--e3) 0 var(--e4); font-weight: 600; }
+
+  /* 2 · o medo + pad de coordenação */
+  .medo { background: #000; }
+  .medo blockquote { margin: 0; }
+  .medo h2 { font-size: clamp(2.5rem, 8vw, 6rem); max-width: 14ch; }
+  .medo h2 .aspas { color: var(--vermelho); }
+  .medo .quem { margin-top: var(--e3); color: var(--tinta-suave); max-width: 46ch; font-size: 1.125rem; }
+  .teste {
+    margin-top: var(--e5); background: #050505; border: 1px solid #2A0000; border-radius: 20px;
+    padding: var(--e4) var(--e3); display: grid; gap: var(--e3);
+  }
+  @media (min-width: 900px) { .teste { grid-template-columns: 1fr 1.1fr; padding: var(--e5); align-items: center; } }
+  .teste > * { min-width: 0; } /* o player e os desenhos não alargam a grade no celular */
+  .teste h3 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+  .teste .instrucao { color: var(--tinta-suave); margin-top: 12px; }
+  .teste .padrao { font-family: var(--fonte-display); font-size: 1.5rem; margin-top: 16px; color: #fff; }
+  .teste .padrao b { color: var(--vermelho); font-weight: 400; }
+  .jogo { position: relative; }
+  .musica { margin-top: 20px; }
+  .musica-video { position: relative; aspect-ratio: 16 / 9; min-height: 200px; background: #000; border-radius: 12px; overflow: hidden; }
+  .musica-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .musica-aviso { min-height: 1.4em; margin-top: 6px; font-size: .9375rem; color: var(--amarelo); }
+  .pista {
+    position: relative; height: 220px; border-radius: 14px; overflow: hidden;
+    background: linear-gradient(#000, #1E1E1E); display: grid; grid-template-columns: 1fr 1fr;
+  }
+  .pista .faixa { position: relative; border-right: 1px solid #2A0000; }
+  .pista .faixa:last-child { border-right: 0; }
+  .pista .linha { position: absolute; left: 0; right: 0; bottom: 34px; height: 3px; background: var(--vermelho); opacity: .8; }
+  .nota {
+    position: absolute; left: 50%; top: 0; width: 44px; height: 18px; margin-left: -22px; border-radius: 9px;
+    background: #fff; will-change: transform;
+  }
+  .faixa.ta .nota { background: var(--vermelho); }
+  .nota.acertou { background: var(--amarelo); }
+  .contagem { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--fonte-display); font-size: 4rem; pointer-events: none; }
+  .pads { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .pad {
+    min-height: 96px; border: 0; border-radius: 16px; background: transparent; cursor: pointer;
+    display: grid; justify-items: center; gap: 2px; padding: 6px; touch-action: manipulation; user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .pad svg { width: min(100%, 170px); height: auto; overflow: visible; transition: transform .08s, filter .15s; }
+  .pad strong { font-family: var(--fonte-display); font-size: 1.75rem; font-weight: 400; line-height: 1; margin-top: 4px; }
+  .pad-caixa strong { color: var(--vermelho); }
+  .pad span { font-size: .8125rem; color: var(--tinta-suave); }
+  .pad .onda { opacity: 0; transform-box: fill-box; transform-origin: center; }
+  .pad:hover svg { filter: brightness(1.15); }
+  .pad.batida svg, .pad:active svg { transform: scale(.93); }
+  .pad.batida .onda { animation: onda .35s ease-out; }
+  @keyframes onda { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(1.35); } }
+  .pad-caixa.batida .pele { fill: #FFFFFF; }
+  .pad.vez svg { filter: drop-shadow(0 0 10px rgba(255,255,255,.85)); }
+  .jogo-acoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; align-items: center; }
+  .botao-jogo {
+    min-height: 48px; padding: 0 22px; border-radius: 999px; border: 2px solid #fff; background: #fff; color: #000;
+    font-weight: 800; cursor: pointer; transition: background .2s, color .2s, transform .1s;
+  }
+  .botao-jogo:hover { background: transparent; color: #fff; }
+  .botao-jogo:active { transform: scale(.97); }
+  .botao-som { height: 44px; min-height: 44px; box-sizing: border-box; padding: 0 14px; line-height: 1; border-radius: 999px; border: 1px solid #555; background: transparent; cursor: pointer; font-size: .875rem; }
+  .botao-som:hover { border-color: #fff; }
+  .botao-som[aria-pressed="true"] { border-color: var(--vermelho); }
+  .resultado { min-height: 3.2em; margin-top: 16px; font-size: 1.125rem; }
+  .resultado strong { font-family: var(--fonte-display); font-weight: 400; font-size: 1.75rem; display: block; line-height: 1.15; color: #fff; }
+  .medo .cta-bloco { margin-top: var(--e5); }
+
+  /* 3 · como funciona */
+  .passos { list-style: none; padding: 0; margin: var(--e5) 0; display: grid; gap: var(--e4); counter-reset: p; }
+  @media (min-width: 900px) { .passos { grid-template-columns: repeat(3, 1fr); } }
+  .passos li { border-top: 2px solid var(--vermelho); padding-top: var(--e3); }
+  .passos .n { font-family: var(--fonte-display); font-size: 4.5rem; line-height: 1; color: #2A0000; -webkit-text-stroke: 1px var(--vermelho); }
+  .passos h3 { font-size: 1.75rem; margin: 12px 0 8px; }
+  .passos p { color: var(--tinta-suave); max-width: 32ch; }
+  .como .cabeca { max-width: 640px; margin-left: auto; text-align: right; }
+  @media (max-width: 899px) { .como .cabeca { text-align: left; margin-left: 0; } }
+
+  /* 4 · prova */
+  .prova .grade { display: grid; gap: var(--e5); margin-top: var(--e5); }
+  @media (min-width: 900px) { .prova .grade { grid-template-columns: 1.35fr 1fr; align-items: start; } }
+  .prova .lado { display: grid; gap: var(--e4); }
+  .numero { font-family: var(--fonte-display); font-size: clamp(4rem, 12vw, 7.5rem); line-height: .9; color: var(--vermelho); }
+  .numero-texto { font-size: 1.125rem; margin-top: 8px; }
+  .dino { display: grid; grid-template-columns: 112px 1fr; gap: 16px; align-items: center; }
+  .dino .yt { border-radius: 10px; }
+  .dino .yt .play { width: 40px; height: 40px; }
+  .dino .yt .play::after { border-left-width: 13px; border-top-width: 8px; border-bottom-width: 8px; margin-left: 4px; }
+  .dino strong { font-family: var(--fonte-display); font-weight: 400; font-size: 1.5rem; display: block; line-height: 1.1; }
+  .dino span { color: var(--tinta-suave); font-size: .9375rem; }
+  .prova .marcas-titulo { margin: var(--e5) 0 var(--e3); color: var(--tinta-suave); }
+
+  /* 5 · PICO: a primeira hora (cena fixa) */
+  .aula .fx-palco { padding: calc(var(--topo-altura)) 16px 24px; }
+  .aula .quadro {
+    width: min(100%, var(--largura)); display: grid; gap: 24px; align-items: center;
+  }
+  @media (min-width: 900px) { .aula .quadro { grid-template-columns: 1fr 1fr; gap: 64px; } }
+  .relogio { position: relative; width: min(64vw, 40vh, 420px); aspect-ratio: 1; margin-inline: auto; }
+  .relogio svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .relogio .trilha { stroke: #1E1E1E; }
+  .relogio .arco { stroke: var(--vermelho); stroke-linecap: round; }
+  .relogio .tempo {
+    position: absolute; inset: 0; display: grid; place-items: center; text-align: center;
+    font-family: var(--fonte-display); font-size: clamp(2.5rem, 8vw, 5rem); font-variant-numeric: tabular-nums; line-height: 1;
+  }
+  .relogio .tempo small { display: block; font-family: var(--fonte-texto); font-size: .8125rem; letter-spacing: .1em; text-transform: uppercase; color: var(--tinta-suave); margin-top: 8px; }
+  .groove { display: grid; grid-template-columns: repeat(16, 1fr); gap: 4px; margin: 0 auto; width: min(100%, 420px); }
+  .groove i { aspect-ratio: 1; border-radius: 3px; background: #1E1E1E; transition: background .2s; }
+  .groove i.on { background: var(--vermelho); }
+  .groove i.on.forte { background: #fff; }
+  .momentos { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+  .momentos li { display: grid; grid-template-columns: 4.5rem 1fr; gap: 12px; align-items: baseline; }
+  .momentos .min { font-family: var(--fonte-display); font-size: 1.5rem; color: var(--vermelho); font-variant-numeric: tabular-nums; }
+  .momentos strong { font-family: var(--fonte-display); font-weight: 400; font-size: clamp(1.375rem, 3vw, 2rem); line-height: 1.15; display: block; }
+  .aula h2 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 20px; }
+  @media (max-width: 899px) {
+    .aula h2 { font-size: 1.75rem; margin-bottom: 10px; }
+    .relogio { width: min(46vw, 26vh); }
+    .momentos { gap: 6px; }
+    .momentos strong { font-size: 1.1875rem; }
+    .momentos .min { font-size: 1.125rem; }
+    .groove { margin-top: 12px; }
+  }
+
+  /* oferta logo após o pico */
+  .oferta { padding: var(--e5) 0 var(--e6); }
+  .cartao {
+    border: 1px solid var(--vermelho); border-radius: 24px; padding: var(--e4) var(--e3);
+    background: radial-gradient(120% 140% at 100% 0%, #2A0000, #000 60%);
+    display: grid; gap: var(--e4);
+  }
+  @media (min-width: 900px) { .cartao { grid-template-columns: 1.2fr 1fr; padding: var(--e5); align-items: center; } }
+  .cartao h2 { font-size: clamp(2.25rem, 6vw, 4rem); }
+  .inclui { list-style: none; padding: 0; margin: var(--e3) 0 0; display: grid; gap: 12px; font-size: 1.125rem; }
+  .inclui li { display: flex; gap: 12px; align-items: baseline; }
+  .inclui li::before { content: ""; flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--vermelho); transform: translateY(-2px); }
+
+  /* 6 · dúvidas + final */
+  .duvidas .grade { display: grid; gap: var(--e4); }
+  @media (min-width: 900px) { .duvidas .grade { grid-template-columns: 1fr 1.6fr; } }
+  .final { text-align: center; padding: var(--e6) 0; background: radial-gradient(80% 90% at 50% 100%, #2A0000, #000 70%); }
+  .final h2 { font-size: clamp(2.75rem, 9vw, 6rem); max-width: 14ch; margin: 0 auto var(--e4); }
+  .final h2 em { color: var(--vermelho); }
+
+  .fx-reduzido .aula .fx-palco { padding: var(--e6) 16px; }
+  .fx-reduzido .rec i { animation: none; }
+</style>
+</head>
+<body data-msg="Olá! Vim pelo site e quero agendar minha aula cortesia (aula para adultos).">
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="topo">
+  <div class="miolo">
+    <a class="marca" href="#inicio" aria-label="Bateras Beat Music School — início"><img src="../comum/logo.png" alt="Bateras Beat Music School" width="140" height="140"></a>
+    <div class="topo-acoes">
+      <nav data-nav aria-label="Seções">
+        <ul>
+          <li><a href="#coordenacao">Coordenação</a></li>
+          <li><a href="#como">Como funciona</a></li>
+          <li><a href="#prova">Quem já toca</a></li>
+          <li><a href="#aula">A aula</a></li>
+          <li><a href="#duvidas">Dúvidas</a></li>
+        </ul>
+      </nav>
+      <a class="cta cta-topo" data-cta href="https://www.baterasbeat.com.br/quem-somos/contato/faleconosco">Agendar aula cortesia</a>
+      <button class="menu-botao" type="button" data-menu-botao aria-expanded="false">Menu</button>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- 1 · A garagem às 23h -->
+  <section class="abertura" id="inicio" data-abertura>
+    <div class="luz" data-fx-paralaxe="0.15" aria-hidden="true"></div>
+    <div class="porta" aria-hidden="true"></div>
+    <div class="miolo">
+      <p class="rec rotulo"><i aria-hidden="true"></i>Para adultos</p>
+      <h1 data-fx="palavras" data-fx-duracao="900">Aulas de música para adultos que sempre quiseram tocar.</h1>
+      <p class="promessa" data-fx="surgir" data-fx-atraso="700">Você no palco em 3 meses!</p>
+      <div class="cta-bloco" data-fx="surgir" data-fx-atraso="900">
+        <a class="cta" data-cta href="https://www.baterasbeat.com.br/quem-somos/contato/faleconosco">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3a.5.5 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/></svg>
+          Agendar aula cortesia</a>
+        <p class="risco-zero"><span>1 hora</span><span>Não precisa levar nada</span><span>Agendamento pelo WhatsApp</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · O medo dito em voz alta + pad de coordenação (movimento-assinatura) -->
+  <section class="secao medo" id="coordenacao" aria-labelledby="t-medo">
+    <div class="miolo">
+      <blockquote>
+        <h2 id="t-medo" data-fx="subir"><span class="aspas">“</span>Eu não tenho coordenação motora.<span class="aspas">”</span></h2>
+      </blockquote>
+      <p class="quem" data-fx="surgir" data-fx-atraso="200">É a frase que a gente mais ouve de quem chega. Antes de concordar, faça um teste de 10 segundos.</p>
+
+      <div class="teste" data-fx="crescer">
+        <div>
+          <p class="rotulo" style="color:var(--vermelho)">Teste de 10 segundos</p>
+          <h3>Toque junto com a música.</h3>
+          <p class="padrao" aria-label="Ritmo: tum, tá, tum, tá">tum… <b>tá</b>… tum… <b>tá</b></p>
+          <p class="instrucao">A caixa (TÁ) fica à esquerda, o bumbo (TUM) à direita, igual à música. No celular, um polegar em cada um. No computador, use as teclas <kbd>F</kbd> (caixa) e <kbd>J</kbd> (bumbo). Toque quando a barrinha chegar na linha vermelha.</p>
+          <div class="musica">
+            <div class="musica-video"><div id="yt-musica"></div></div>
+            <p class="legenda">Trilha do teste: “Back in Black”, AC/DC (vídeo oficial no YouTube).</p>
+            <p class="musica-aviso" data-musica-aviso aria-live="polite"></p>
+          </div>
+        </div>
+        <div class="jogo">
+          <div class="pista" aria-hidden="true">
+            <div class="faixa ta" data-faixa="ta"><div class="linha"></div></div>
+            <div class="faixa tum" data-faixa="tum"><div class="linha"></div></div>
+            <div class="contagem" data-contagem></div>
+          </div>
+          <div class="pads">
+            <button class="pad pad-caixa" type="button" data-pad="ta" aria-label="Caixa, tá (tecla F)">
+              <svg viewBox="0 0 160 112" aria-hidden="true">
+                <ellipse cx="80" cy="84" rx="62" ry="16" fill="#7A0000"/>
+                <rect x="18" y="34" width="124" height="50" fill="#B30000"/>
+                <g fill="#E8E8E8"><rect x="30" y="42" width="7" height="34" rx="2"/><rect x="58" y="44" width="7" height="34" rx="2"/><rect x="95" y="44" width="7" height="34" rx="2"/><rect x="123" y="42" width="7" height="34" rx="2"/></g>
+                <path d="M18,80 Q80,104 142,80" fill="none" stroke="#BDBDBD" stroke-width="5"/>
+                <ellipse class="pele" cx="80" cy="34" rx="62" ry="17" fill="#E8E8E8" stroke="#BDBDBD" stroke-width="5"/>
+                <ellipse class="onda" cx="80" cy="34" rx="62" ry="17" fill="none" stroke="#F50505" stroke-width="4"/>
+              </svg>
+              <strong>TÁ</strong><span>caixa · tecla F</span>
+            </button>
+            <button class="pad pad-bumbo" type="button" data-pad="tum" aria-label="Bumbo, tum (tecla J)">
+              <svg viewBox="0 0 160 112" aria-hidden="true">
+                <path d="M34,96 L18,110 M126,96 L142,110" stroke="#777" stroke-width="5" stroke-linecap="round"/>
+                <circle class="pele" cx="80" cy="56" r="50" fill="#111" stroke="#B30000" stroke-width="9"/>
+                <circle cx="80" cy="56" r="43" fill="none" stroke="#E8E8E8" stroke-width="1.5"/>
+                <image href="../comum/logo.png" x="50" y="26" width="60" height="60"/>
+                <circle class="onda" cx="80" cy="56" r="50" fill="none" stroke="#F50505" stroke-width="4"/>
+              </svg>
+              <strong>TUM</strong><span>bumbo · tecla J</span>
+            </button>
+          </div>
+          <div class="jogo-acoes">
+            <button class="botao-jogo" type="button" data-comecar>Começar o teste</button>
+            <button class="botao-som" type="button" data-som aria-pressed="true">Música: ligada</button>
+          </div>
+          <p class="resultado" data-resultado aria-live="polite"></p>
+        </div>
+      </div>
+
+      <div class="cta-bloco">
+        <a class="cta" data-cta href="https://www.baterasbeat.com.br/quem-somos/contato/faleconosco">Agendar aula cortesia</a>
+        <p class="risco-zero"><span>1 hora</span><span>Não precisa levar nada</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · Como funciona -->
+  <section class="secao como" id="como" aria-labelledby="t-como" data-fx-fundo="#000000" data-fx-tinta="#FFFFFF">
+    <div class="miolo">
+      <div class="cabeca">
+        <p class="rotulo" style="color:var(--vermelho)">Como funciona</p>
+        <h2 id="t-como" data-fx="subir">Três passos até o palco.</h2>
+      </div>
+      <ol class="passos">
+        <li data-fx="esquerda">
+          <span class="n" aria-hidden="true">1</span>
+          <h3>Agende pelo WhatsApp</h3>
+          <p>Você fala com a gente e é direcionado para a unidade mais perto de você.</p>
+        </li>
+        <li data-fx="esquerda" data-fx-atraso="150">
+          <span class="n" aria-hidden="true">2</span>
+          <h3>Faça a aula cortesia</h3>
+          <p>1 hora na unidade. Não precisa levar nada: instrumento e professor estão lá.</p>
+        </li>
+        <li data-fx="esquerda" data-fx-atraso="300">
+          <span class="n" aria-hidden="true">3</span>
+          <h3>Suba no palco</h3>
+          <p>A promessa da Bateras Beat: você no palco em 3 meses.</p>
+        </li>
+      </ol>
+      <div class="cta-bloco">
+        <a class="cta" data-cta href="https://www.baterasbeat.com.br/quem-somos/contato/faleconosco">Agendar aula cortesia</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · Prova: quem já toca -->
+  <section class="secao prova" id="prova" aria-labelledby="t-prova" data-fx-fundo="#120000" data-fx-tinta="#FFFFFF">
+    <div class="miolo">
+      <p class="rotulo" style="color:var(--vermelho)">Quem já toca</p>
+      <h2 id="t-prova" data-fx="subir">Seu Dorival tem 77 anos.<br>E é aluno.</h2>
+      <div class="grade">
+        <div data-fx="esquerda">
+          <button class="yt" type="button" data-yt="OvbRVly8NMA" aria-label="Assistir: entrevista com Dorival Saravalli, 77 anos, aluno da Bateras Beat Jundiaí">
+            <img src="https://i.ytimg.com/vi_webp/OvbRVly8NMA/hqdefault.webp" alt="" width="480" height="360" loading="lazy" decoding="async">
+            <span class="play" aria-hidden="true"></span>
+          </button>
+          <p class="legenda">Entrevista com Dorival Saravalli, 77 anos, aluno da Bateras Beat Jundiaí.</p>
+        </div>
+        <div class="lado" data-fx="direita">
+          <div>
+            <p class="numero"><span data-fx="contar" data-fx-fim="44">44</span></p>
+            <p class="numero-texto">unidades em 4 países: Brasil, Itália, China e Austrália.</p>
+            <p class="numero-texto" style="color:var(--tinta-suave)">A rede de escola de música que mais cresce no Brasil.</p>
+          </div>
+          <div class="dino">
+            <button class="yt" type="button" data-yt="UbU3p2uFw7k" aria-label="Assistir: Dino Verdade toca Bananeira no Mão na Massa">
+              <img src="https://i.ytimg.com/vi/UbU3p2uFw7k/mqdefault.jpg" alt="" width="320" height="180" loading="lazy" decoding="async">
+              <span class="play" aria-hidden="true"></span>
+            </button>
+            <p><strong>Dino Verdade</strong><span>Fundador da Bateras Beat. O método leva a assinatura dele.</span></p>
+          </div>
+        </div>
+      </div>
+      <p class="marcas-titulo rotulo">Marcas parceiras</p>
+      <ul class="marcas">
+        <li><a href="http://www.pearl-latinamerica.com/" target="_blank" rel="noopener"><img src="../comum/marcas/pearl.webp" alt="Pearl" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="https://br.yamaha.com/index.html" target="_blank" rel="noopener"><img src="../comum/marcas/yamaha.webp" alt="Yamaha" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://paiste.com/" target="_blank" rel="noopener"><img src="../comum/marcas/paiste.webp" alt="Paiste" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://www2.musical-express.com.br/beta/evans/" target="_blank" rel="noopener"><img src="../comum/marcas/evans.webp" alt="Evans" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://www2.musical-express.com.br/beta/promark/" target="_blank" rel="noopener"><img src="../comum/marcas/promark.webp" alt="Promark" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://www2.musical-express.com.br/beta/lista_de_produtos/?portfolio_fornecedor=gibraltar" target="_blank" rel="noopener"><img src="../comum/marcas/gibraltar.webp" alt="Gibraltar" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="https://odery.com.br/" target="_blank" rel="noopener"><img src="../comum/marcas/odery.webp" alt="Odery" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://www.tagima.com.br/" target="_blank" rel="noopener"><img src="../comum/marcas/tagima.webp" alt="Tagima" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://orioncymbals.com.br/" target="_blank" rel="noopener"><img src="../comum/marcas/orion.webp" alt="Orion Cymbals" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://krestcymbals.com.br/web/" target="_blank" rel="noopener"><img src="../comum/marcas/krest.webp" alt="Krest Cymbals" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://www.torellimusical.com.br/" target="_blank" rel="noopener"><img src="../comum/marcas/torelli.webp" alt="Torelli" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://michael.com.br/site/" target="_blank" rel="noopener"><img src="../comum/marcas/michael.webp" alt="Michael" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://www.phxinstrumentos.com.br/" target="_blank" rel="noopener"><img src="../comum/marcas/phx.webp" alt="PHX" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://www.waldman-music.com/" target="_blank" rel="noopener"><img src="../comum/marcas/waldman.webp" alt="Waldman" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://jogvibratom.com.br/" target="_blank" rel="noopener"><img src="../comum/marcas/vibratom.webp" alt="Vibratom" width="195" height="80" loading="lazy"></a></li>
+      </ul>
+      <div class="cta-bloco" style="margin-top:var(--e5)">
+        <a class="cta" data-cta href="https://www.baterasbeat.com.br/quem-somos/contato/faleconosco">Agendar aula cortesia</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · PICO: a primeira hora, minuto a minuto -->
+  <!-- PENDENTE: confirmar com o dono o roteiro real da aula cortesia (os 4 momentos abaixo). -->
+  <section class="aula" id="aula" aria-labelledby="t-aula" data-fx-fixa data-fx-altura="5" data-fx-fundo="#000000" data-fx-tinta="#FFFFFF">
+    <div class="fx-palco">
+      <div class="quadro">
+        <div>
+          <div class="relogio" aria-hidden="true">
+            <svg viewBox="0 0 120 120"><circle class="trilha" cx="60" cy="60" r="54" fill="none" stroke-width="6"/><circle class="arco" data-arco cx="60" cy="60" r="54" fill="none" stroke-width="6" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/></svg>
+            <p class="tempo"><span data-minuto>00:00</span><small>sua 1ª hora</small></p>
+          </div>
+          <div class="groove" data-groove aria-hidden="true"></div>
+        </div>
+        <div>
+          <p class="rotulo" style="color:var(--vermelho)">A aula cortesia</p>
+          <h2 id="t-aula">Sua primeira hora.</h2>
+          <ol class="momentos">
+            <li data-fx-opacidade="0.18,1" data-fx-faixa="0.02,0.14"><span class="min">00</span><strong>Você chega. Sem levar nada.</strong></li>
+            <li data-fx-opacidade="0.18,1" data-fx-faixa="0.22,0.36"><span class="min">10</span><strong>Senta no instrumento, com o professor do lado.</strong></li>
+            <li data-fx-opacidade="0.18,1" data-fx-faixa="0.44,0.58"><span class="min">30</span><strong>Toca as primeiras batidas.</strong></li>
+            <li data-fx-opacidade="0.18,1" data-fx-faixa="0.68,0.84"><span class="min">60</span><strong>Sai sabendo se é pra você.</strong></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- oferta: o desfecho do pico -->
+  <section class="oferta" aria-labelledby="t-oferta">
+    <div class="miolo">
+      <div class="cartao" data-fx="crescer">
+        <div>
+          <p class="rotulo" style="color:var(--vermelho)">A oferta</p>
+          <h2 id="t-oferta">1 hora. Sem levar nada. Sem pagar.</h2>
+          <ul class="inclui">
+            <li>Aula cortesia de 1 hora, na unidade mais perto de você</li>
+            <li>Instrumento e professor: está tudo lá</li>
+            <li>Agendamento direto pelo WhatsApp</li>
+            <li data-bonus-caixa hidden>Se você se matricular: <span class="bonus-tag" data-bonus hidden></span></li>
+          </ul>
+        </div>
+        <div class="cta-bloco">
+          <a class="cta" data-cta href="https://www.baterasbeat.com.br/quem-somos/contato/faleconosco">Agendar aula cortesia</a>
+          <p class="risco-zero"><span>1 hora</span><span>Não precisa levar nada</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · Dúvidas -->
+  <section class="secao duvidas" id="duvidas" aria-labelledby="t-duvidas">
+    <div class="miolo grade">
+      <div>
+        <p class="rotulo" style="color:var(--vermelho)">Dúvidas</p>
+        <h2 id="t-duvidas" data-fx="subir">Antes de agendar.</h2>
+      </div>
+      <div class="faq">
+        <details><summary>Nunca toquei nada. Posso começar?</summary><p>Pode. A aula cortesia existe exatamente para isso: você experimenta 1 hora com professor e descobre na prática. O Seu Dorival, aluno da unidade Jundiaí, tem 77 anos.</p></details>
+        <details><summary>Preciso levar instrumento?</summary><p>Não precisa levar nada.</p></details>
+        <details><summary>Quanto tempo dura a aula cortesia?</summary><p>1 hora, a duração padrão de uma aula.</p></details>
+        <details><summary>Quais instrumentos posso aprender?</summary><p>Bateria, guitarra, violão, baixo e canto, entre outros. A oferta varia por unidade; no WhatsApp a gente confirma o que tem perto de você.</p></details>
+        <details><summary>Tem unidade perto de mim?</summary><p>São 44 unidades em 4 países. Pelo WhatsApp você é direcionado para a unidade mais próxima.</p></details>
+        <details><summary>Quanto custa depois?</summary><p>A aula cortesia não tem custo. Os valores da mensalidade variam por unidade e são informados no atendimento.<span data-bonus-caixa hidden> Para quem se matricular: <span data-bonus hidden></span>.</span></p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final -->
+  <section class="final" data-final aria-labelledby="t-final">
+    <div class="miolo">
+      <h2 id="t-final" data-fx="palavras">Agende sua <em>primeira hora.</em></h2>
+      <div class="cta-bloco centro">
+        <a class="cta" data-cta href="https://www.baterasbeat.com.br/quem-somos/contato/faleconosco">Agendar aula cortesia</a>
+        <p class="risco-zero" style="justify-content:center"><span>1 hora</span><span>Não precisa levar nada</span><span>Agendamento pelo WhatsApp</span></p>
+        <a class="link-discreto" href="https://www.baterasbeat.com.br/index.php/metodologia">Conheça a metodologia</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="miolo">
+    <img src="../comum/logo.png" alt="Bateras Beat Music School" width="64" height="64" loading="lazy">
+    <ul>
+      <li><a href="https://www.baterasbeat.com.br/quem-somos">Quem somos</a></li>
+      <li><a href="https://www.baterasbeat.com.br/bateras-tv">Bateras TV</a></li>
+      <li><a href="https://franquias.baterasbeat.com.br/">Seja um franqueado</a></li>
+      <li><a href="https://www.baterasbeat.com.br/quem-somos/privacidade">Privacidade</a></li>
+      <li><a href="http://www.instagram.com/baterasbeatoficial">Instagram</a></li>
+      <li><a href="https://www.youtube.com/channel/UCgHixOxzIkiMCEI0_m3Axuw">YouTube</a></li>
+    </ul>
+    <p>© 2026 Bateras Beat. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<div class="barra-cta" aria-hidden="true">
+  <a class="cta" data-cta tabindex="-1" href="https://www.baterasbeat.com.br/quem-somos/contato/faleconosco">Agendar aula cortesia</a>
+  <small>1 hora · não precisa levar nada</small>
+</div>
+
+<script src="../comum/sites-incriveis.js" defer></script>
+<script src="../comum/base.js" defer></script>
+<script>
+/* Página A — pico (relógio 0→60) e movimento-assinatura (pad de coordenação). */
+document.addEventListener("DOMContentLoaded", function () {
+  var reduzido = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- pico: relógio e groove ligados à rolagem ---------- */
+  var cena = document.getElementById("aula");
+  var arco = cena.querySelector("[data-arco]");
+  var minuto = cena.querySelector("[data-minuto]");
+  var groove = cena.querySelector("[data-groove]");
+  for (var i = 0; i < 16; i++) {
+    var c = document.createElement("i");
+    if (i % 4 === 0) c.className = "forte";
+    groove.appendChild(c);
+  }
+  var celulas = groove.children;
+  function desenhar(p) {
+    var t = Math.min(1, p / 0.84);
+    arco.setAttribute("stroke-dashoffset", (100 - t * 100).toFixed(2));
+    var m = Math.round(t * 60);
+    minuto.textContent = (m < 10 ? "0" : "") + m + ":00";
+    var acesas = Math.round(t * 16);
+    for (var k = 0; k < 16; k++) celulas[k].classList.toggle("on", k < acesas);
+  }
+  if (reduzido) { desenhar(1); }
+  else {
+    var pendente = false;
+    var ler = function () {
+      pendente = false;
+      desenhar(parseFloat(getComputedStyle(cena).getPropertyValue("--progresso")) || 0);
+    };
+    addEventListener("scroll", function () { if (!pendente) { pendente = true; requestAnimationFrame(ler); } }, { passive: true });
+    ler();
+  }
+
+  /* ---------- assinatura: teste de coordenação tocando junto com "Back in Black" (AC/DC) ----------
+     A música toca pelo player oficial do YouTube (a plataforma exige o player visível).
+     O relógio do teste é o tempo do próprio vídeo: anúncio, carregamento lento ou travada
+     não tiram as notas de sincronia com o bumbo e a caixa da música.
+     AJUSTE FINO: abra a página com ?calibrar no endereço, toque J em cada bumbo da música
+     e copie para MUSICA os números que aparecerem no fim. */
+  var MUSICA = {
+    video: "pAgnJDJN4VA",
+    bpm: 92,              // andamento da música (calibrado)
+    primeiraBatida: 5.79, // segundo do vídeo do 1º bumbo, depois da contagem de 8 no chimbal (calibrado)
+    compassos: 4          // 4 compassos ≈ 10 segundos
+  };
+  var PADRAO = [[0, "tum"], [1, "ta"], [2, "tum"], [3, "ta"]]; // bumbo no 1 e no 3, caixa no 2 e no 4
+  var calibrar = /[?&]calibrar\b/.test(location.search);
+  var BATIDA = 60 / MUSICA.bpm, JANELA = 0.2, ANTECEDENCIA = 1.6, CONTAGEM = 8; // segundos / tempos (contagem de 8 da música)
+
+  var pista = document.querySelector(".pista");
+  var faixas = { tum: pista.querySelector("[data-faixa='tum']"), ta: pista.querySelector("[data-faixa='ta']") };
+  var pads = { tum: document.querySelector("[data-pad='tum']"), ta: document.querySelector("[data-pad='ta']") };
+  var contagem = pista.querySelector("[data-contagem]");
+  var resultado = document.querySelector("[data-resultado]");
+  var botao = document.querySelector("[data-comecar]");
+  var botaoSom = document.querySelector("[data-som]");
+  var aviso = document.querySelector("[data-musica-aviso]");
+
+  var player = null, pronto = false, modo = "musica"; // "musica" ou "metronomo" (plano B)
+  var notas = [], rodando = false, tocando = false, acertos = 0, toques = [];
+  var ancora = null, ultimoTempo = -1, ancoraFixa = 0, mudo = false, audio = null, esperaPlay = null;
+
+  /* --- player do YouTube: só carrega quando o teste se aproxima da tela --- */
+  function carregarApi() {
+    if (window.YT && window.YT.Player) return criarPlayer();
+    window.onYouTubeIframeAPIReady = criarPlayer;
+    var s = document.createElement("script");
+    s.src = "https://www.youtube.com/iframe_api";
+    s.onerror = planoB;
+    document.head.appendChild(s);
+  }
+  function criarPlayer() {
+    if (player) return;
+    player = new YT.Player("yt-musica", {
+      videoId: MUSICA.video,
+      playerVars: { rel: 0, playsinline: 1, controls: 1, start: inicioVideo() },
+      events: {
+        onReady: function () { pronto = true; modo = "musica"; aviso.textContent = ""; },
+        onError: planoB,
+        onStateChange: function (e) {
+          if (e.data === YT.PlayerState.PLAYING && rodando && !tocando) { tocando = true; clearTimeout(esperaPlay); aviso.textContent = ""; }
+          if (e.data === YT.PlayerState.BUFFERING) ancora = null;
+        }
+      }
+    });
+  }
+  function inicioVideo() { return Math.max(0, Math.floor(MUSICA.primeiraBatida - CONTAGEM * BATIDA - 0.4)); }
+  function planoB() {
+    if (pronto && modo === "musica") return;
+    modo = "metronomo";
+    aviso.textContent = "A música não carregou aqui. O teste segue no metrônomo, no mesmo andamento.";
+  }
+  new IntersectionObserver(function (e, obs) {
+    if (e[0].isIntersecting) { obs.disconnect(); carregarApi(); }
+  }, { rootMargin: "600px 0px" }).observe(document.getElementById("coordenacao"));
+
+  /* --- relógio: tempo do vídeo, suavizado entre as atualizações do player --- */
+  function agora() {
+    var p = performance.now() / 1000;
+    if (modo === "metronomo") return p - ancoraFixa;
+    var t = player.getCurrentTime();
+    if (t !== ultimoTempo) {
+      ultimoTempo = t;
+      var candidata = p - t;
+      ancora = (ancora === null || Math.abs(candidata - ancora) > 0.3) ? candidata : ancora * 0.85 + candidata * 0.15;
+    }
+    return ancora === null ? t : p - ancora;
+  }
+
+  /* --- sons do plano B (metrônomo) --- */
+  function tocarSom(tipo) {
+    if (mudo || modo !== "metronomo") return;
+    if (!audio) audio = new (window.AudioContext || window.webkitAudioContext)();
+    var t = audio.currentTime, g = audio.createGain();
+    g.connect(audio.destination);
+    if (tipo === "tum") {
+      var o = audio.createOscillator();
+      o.frequency.setValueAtTime(140, t); o.frequency.exponentialRampToValueAtTime(45, t + 0.18);
+      g.gain.setValueAtTime(0.9, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.25);
+      o.connect(g); o.start(t); o.stop(t + 0.26);
+    } else {
+      var b = audio.createBuffer(1, audio.sampleRate * 0.18, audio.sampleRate), d = b.getChannelData(0);
+      for (var j = 0; j < d.length; j++) d[j] = Math.random() * 2 - 1;
+      var s = audio.createBufferSource(); s.buffer = b;
+      var f = audio.createBiquadFilter(); f.type = "highpass"; f.frequency.value = 1200;
+      g.gain.setValueAtTime(0.5, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.16);
+      s.connect(f); f.connect(g); s.start(t);
+    }
+  }
+
+  botaoSom.addEventListener("click", function () {
+    mudo = !mudo;
+    botaoSom.setAttribute("aria-pressed", String(!mudo));
+    botaoSom.textContent = mudo ? "Música: desligada" : "Música: ligada";
+    if (player && pronto) { if (mudo) player.mute(); else player.unMute(); }
+  });
+
+  function preparar() {
+    Object.keys(faixas).forEach(function (k) { faixas[k].querySelectorAll(".nota").forEach(function (n) { n.remove(); }); });
+    notas = [];
+    var compassos = calibrar ? 8 : MUSICA.compassos;
+    for (var c = 0; c < compassos; c++) {
+      PADRAO.forEach(function (p) {
+        var el = document.createElement("div");
+        el.className = "nota";
+        faixas[p[1]].appendChild(el);
+        notas.push({ t: MUSICA.primeiraBatida + (c * 4 + p[0]) * BATIDA, faixa: p[1], el: el, feita: false, avisada: false });
+      });
+    }
+  }
+
+  function comecar() {
+    if (rodando) return;
+    if (!pronto && modo === "musica") {
+      // a música ainda está carregando: começa assim que o player responder
+      aviso.textContent = "Carregando a música…";
+      carregarApi();
+      var tentativas = 0;
+      var espera = setInterval(function () {
+        if (pronto || modo === "metronomo" || ++tentativas > 40) { clearInterval(espera); if (!pronto) planoB(); comecar(); }
+      }, 200);
+      return;
+    }
+    preparar();
+    acertos = 0; toques = []; rodando = true; tocando = false; ancora = null; ultimoTempo = -1;
+    resultado.textContent = "";
+    botao.textContent = "Tocando…";
+    botao.disabled = true;
+    if (modo === "musica") {
+      player.seekTo(Math.max(0, MUSICA.primeiraBatida - CONTAGEM * BATIDA - 0.4), true);
+      if (!mudo) { player.unMute(); player.setVolume(100); }
+      player.playVideo();
+      // celular às vezes bloqueia o play automático: pede um toque no vídeo
+      esperaPlay = setTimeout(function () { if (!tocando) aviso.textContent = "Toque no play do vídeo para a música começar."; }, 2500);
+    } else {
+      tocando = true;
+      ancoraFixa = performance.now() / 1000 - Math.max(0, MUSICA.primeiraBatida - CONTAGEM * BATIDA - 0.4);
+    }
+    requestAnimationFrame(quadro);
+  }
+
+  function quadro() {
+    if (!rodando) return;
+    if (!tocando) { contagem.textContent = "♪"; requestAnimationFrame(quadro); return; }
+    var t = agora();
+    var altura = pista.clientHeight - 34 - 9;
+    var falta = MUSICA.primeiraBatida - t;
+    contagem.textContent = falta > 0 && falta <= CONTAGEM * BATIDA ? String(Math.ceil(falta / BATIDA)) : "";
+    notas.forEach(function (n) {
+      var d = n.t - t;
+      if (!reduzido) {
+        n.el.style.transform = "translateY(" + (altura - (d / ANTECEDENCIA) * altura).toFixed(1) + "px)";
+        n.el.style.opacity = d > ANTECEDENCIA || d < -0.3 ? "0" : "1";
+      } else {
+        n.el.style.transform = "translateY(" + altura + "px)";
+        n.el.style.opacity = Math.abs(d) < 0.16 ? "1" : "0";
+      }
+      if (!n.avisada && d <= 0) {
+        n.avisada = true;
+        tocarSom(n.faixa);
+        pads[n.faixa].classList.add("vez");
+        setTimeout(function () { pads[n.faixa].classList.remove("vez"); }, 140);
+      }
+    });
+    if (t < notas[notas.length - 1].t + 0.6) requestAnimationFrame(quadro);
+    else terminar();
+  }
+
+  function bater(faixa) {
+    var pad = pads[faixa];
+    pad.classList.add("batida");
+    setTimeout(function () { pad.classList.remove("batida"); }, 90);
+    if (!rodando || !tocando) return;
+    if (modo === "metronomo") tocarSom(faixa);
+    var t = agora(), melhor = null;
+    if (calibrar && faixa === "tum") toques.push(t);
+    notas.forEach(function (n) {
+      if (n.feita || n.faixa !== faixa) return;
+      var d = Math.abs(n.t - t);
+      if (d <= JANELA && (!melhor || d < Math.abs(melhor.t - t))) melhor = n;
+    });
+    if (melhor) { melhor.feita = true; melhor.el.classList.add("acertou"); acertos++; }
+  }
+
+  function terminar() {
+    rodando = false;
+    botao.disabled = false;
+    botao.textContent = "Tentar de novo";
+    if (modo === "musica" && player) {
+      // abaixa o volume aos poucos e pausa
+      var v = mudo ? 0 : 100;
+      var desce = setInterval(function () {
+        v -= 10;
+        if (v <= 0) { clearInterval(desce); player.pauseVideo(); if (!mudo) player.setVolume(100); }
+        else player.setVolume(v);
+      }, 60);
+    }
+    if (calibrar) {
+      if (toques.length > 1) {
+        var soma = 0;
+        for (var i = 1; i < toques.length; i++) soma += toques[i] - toques[i - 1];
+        var intervalo = soma / (toques.length - 1);
+        resultado.innerHTML = "<strong>Calibração</strong>primeiraBatida: " + toques[0].toFixed(2) + " · bpm: " + (120 / intervalo).toFixed(1) + " (toques no bumbo: " + toques.length + ")";
+      } else resultado.innerHTML = "<strong>Calibração</strong>Toque J em cada bumbo da música.";
+      return;
+    }
+    var total = notas.length;
+    if (acertos >= Math.ceil(total / 3)) {
+      resultado.innerHTML = "<strong>Isso que você fez tem nome: coordenação.</strong>Você acertou " + acertos + " de " + total + " batidas. E isso foi sem professor.";
+    } else {
+      resultado.innerHTML = "<strong>Você acertou " + acertos + " de " + total + ".</strong>É exatamente isso que se treina em aula, com professor do lado.";
+    }
+  }
+
+  botao.addEventListener("click", comecar);
+  Object.keys(pads).forEach(function (k) {
+    pads[k].addEventListener("pointerdown", function (e) { e.preventDefault(); bater(k); });
+    pads[k].addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); bater(k); } });
+  });
+  addEventListener("keydown", function (e) {
+    if (e.repeat || (e.target.closest && e.target.closest("input, textarea"))) return;
+    var k = e.key.toLowerCase();
+    if (k === "f" || k === "d") { bater("ta"); if (rodando) e.preventDefault(); }   // F = caixa
+    if (k === "j" || k === "k") { bater("tum"); if (rodando) e.preventDefault(); }  // J = bumbo
+  });
+});
+</script>
+</body>
+</html>

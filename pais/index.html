@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Aula de música para crianças e adolescentes · Bateras Beat</title>
+<meta name="description" content="Aulas de música para crianças e adolescentes, perto de casa. Agende uma aula cortesia de 1 hora na Bateras Beat, a rede de escola de música que mais cresce no Brasil. Não precisa levar nada.">
+<meta property="og:title" content="Aula de música para crianças e adolescentes · Bateras Beat">
+<meta property="og:description" content="Aula cortesia de 1 hora, perto de casa. Não precisa levar nada.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="../comum/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="../comum/sites-incriveis.css">
+<link rel="stylesheet" href="../comum/base.css">
+<style>
+  :root {
+    --fonte-display: "Bricolage Grotesque", system-ui, sans-serif;
+    --fonte-texto: "Source Sans 3", system-ui, sans-serif;
+    --fundo: #FFFFFF;
+    --tinta: #000000;
+    --tinta-suave: #555555;
+    --foco: #000000;
+    --porta: 44px;
+  }
+  h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; }
+  h2 { font-size: clamp(2.125rem, 5vw, 3.75rem); }
+  .rotulo { color: var(--vermelho-escuro); }
+  .secao { padding: var(--e6) 0; }
+  .risco-zero span::before { color: var(--vermelho-escuro); }
+  .faq summary:hover { color: var(--vermelho-escuro); }
+
+  .topo { color: #000; }
+  .topo.encolhido { background: rgba(255,255,255,.95); box-shadow: 0 1px 0 #E8E8E8; }
+  .topo nav a:hover { background: #E8E8E8; }
+  .topo nav a[aria-current] { background: #000; color: #fff; }
+  .topo .menu-botao { color: #000; }
+
+  /* ---------- assinatura: a porta da cozinha ---------- */
+  .porta {
+    position: fixed; z-index: 40; left: 0; top: 0; bottom: 0; width: var(--porta);
+    background: linear-gradient(90deg, #E8E8E8, #F5F5F5 40%, #D9D9D9);
+    border-right: 1px solid #CFCFCF;
+  }
+  .porta .regua { position: absolute; inset: 88px 0 24px 0; }
+  .porta .altura {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--vermelho);
+    transform-origin: left; will-change: transform;
+  }
+  .porta .marca-p {
+    position: absolute; left: 6px; right: 6px; height: 0; border-top: 2px solid #333;
+    opacity: 0; transform: scaleX(.2); transform-origin: left; transition: opacity .4s, transform .5s;
+  }
+  .porta .marca-p span {
+    position: absolute; left: calc(100% + 10px); top: -0.75em; white-space: nowrap;
+    font-family: "Source Sans 3", sans-serif; font-weight: 700; font-size: .8125rem; color: #333;
+    background: #fff; padding: 1px 8px; border-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,.12);
+    opacity: 0; transition: opacity .3s;
+  }
+  .porta .marca-p.feita { opacity: 1; transform: none; }
+  .porta .marca-p.agora span { opacity: 1; }
+  .porta .marca-p.agora { border-top-color: var(--vermelho-escuro); }
+  body { padding-left: var(--porta); }
+  .topo { left: var(--porta); }
+  .barra-cta { left: var(--porta); }
+  @media (max-width: 767px) {
+    :root { --porta: 14px; }
+    .porta .regua { inset: 72px 0 calc(var(--barra-altura) + 12px) 0; }
+    .porta .marca-p { left: 2px; right: 2px; }
+    .porta .marca-p span { display: none; } /* no celular, só as marquinhas: o rótulo cobriria o texto */
+    .topo nav { left: calc(-1 * var(--porta)); }
+  }
+
+  /* 1 · abertura */
+  .abertura { min-height: 100svh; display: flex; align-items: center; padding: calc(var(--topo-altura) + 24px) 0 48px; }
+  .abertura .miolo { display: grid; gap: var(--e4); align-items: center; }
+  @media (min-width: 900px) { .abertura .miolo { grid-template-columns: 1.25fr 1fr; } }
+  .abertura h1 { font-size: clamp(2.375rem, 3.8vw + 1rem, 4.75rem); line-height: 1.02; }
+  .abertura h1 .acento { color: var(--vermelho-escuro); }
+  .abertura .sub { font-size: clamp(1.125rem, 2vw, 1.375rem); margin: var(--e3) 0 var(--e4); max-width: 34ch; color: #333; }
+  .abertura .foto { position: relative; }
+  .abertura .foto .yt { border-radius: 24px; }
+  @media (max-width: 899px) { .abertura .foto { display: none; } }
+  .selo { display: inline-flex; gap: 8px; align-items: center; font-weight: 700; font-size: .9375rem; margin-bottom: var(--e3); }
+  .selo i { width: 10px; height: 10px; border-radius: 50%; background: var(--vermelho); }
+
+  /* 2 · tela demais */
+  .tela { padding: var(--e6) 0; }
+  .tela .miolo { display: grid; gap: var(--e4); }
+  @media (min-width: 900px) { .tela .miolo { grid-template-columns: 1fr 1fr; align-items: center; } }
+  .celular {
+    width: min(260px, 70vw); aspect-ratio: 9 / 18; border-radius: 36px; border: 10px solid #1E1E1E;
+    background: #000; margin-inline: auto; position: relative; overflow: hidden;
+  }
+  .celular .brilho { position: absolute; inset: 0; background: linear-gradient(160deg, #555, #111); transition: opacity 1.6s ease; }
+  .celular .aviso {
+    position: absolute; left: 12px; right: 12px; top: 28px; border-radius: 14px; background: rgba(255,255,255,.92); color: #000;
+    padding: 12px 14px; font-size: .9375rem; line-height: 1.3; transition: opacity 1s ease .6s;
+  }
+  .celular .aviso b { display: block; font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; color: #555; margin-bottom: 2px; }
+  .tela.apagou .brilho, .tela.apagou .aviso { opacity: 0; }
+  .tela h2 { min-height: 2.2em; }
+  .tela p.texto { font-size: 1.25rem; margin-top: var(--e3); max-width: 38ch; }
+
+  /* 3 · o que muda */
+  .muda .itens { display: grid; gap: var(--e4); margin: var(--e5) 0; }
+  @media (min-width: 900px) { .muda .itens { grid-template-columns: repeat(3, 1fr); } }
+  .muda .item h3 { font-size: 1.75rem; margin-bottom: 8px; }
+  .muda .item p { color: #333; }
+  .muda .item .icone { width: 48px; height: 48px; border-radius: 50%; background: #E8E8E8; display: grid; place-items: center; margin-bottom: 16px; font-weight: 800; color: var(--vermelho-escuro); }
+  .videos { display: grid; gap: var(--e3); }
+  @media (min-width: 768px) { .videos { grid-template-columns: 1fr 1fr; } }
+  .yt img { opacity: 1; }
+
+  /* 4 · método (etapas) */
+  .metodo { background: #E8E8E8; }
+  .metodo .fx-palco { padding: 0 16px; }
+  .metodo .quadro { width: min(100%, var(--largura)); display: grid; gap: 24px; }
+  @media (min-width: 900px) { .metodo .quadro { grid-template-columns: 1fr 1.2fr; align-items: center; gap: 64px; } }
+  .metodo .palco-etapas { display: grid; }
+  .metodo .fx-etapa { grid-area: 1 / 1; background: #fff; border-radius: 20px; padding: var(--e4); box-shadow: 0 10px 30px -18px rgba(0,0,0,.35); }
+  .metodo .fx-etapa .n { font-family: var(--fonte-display); font-weight: 800; font-size: 4rem; line-height: 1; color: var(--vermelho-escuro); }
+  .metodo .fx-etapa h3 { font-size: clamp(1.5rem, 3vw, 2.25rem); margin: 8px 0; }
+  .metodo .fx-etapa p { color: #333; font-size: 1.125rem; }
+  .pontos { display: flex; gap: 8px; margin-top: 16px; }
+  .pontos i { width: 28px; height: 6px; border-radius: 3px; background: #BDBDBD; transition: background .3s; }
+  .metodo[data-etapa="1"] .pontos i:nth-child(-n+1),
+  .metodo[data-etapa="2"] .pontos i:nth-child(-n+2),
+  .metodo[data-etapa="3"] .pontos i:nth-child(-n+3),
+  .metodo[data-etapa="4"] .pontos i:nth-child(-n+4) { background: var(--vermelho-escuro); }
+  .assina { margin-top: var(--e3); display: flex; gap: 14px; align-items: center; }
+  .assina .yt { width: 120px; flex: none; border-radius: 10px; }
+  .assina .yt .play { width: 36px; height: 36px; }
+  .assina .yt .play::after { border-left-width: 12px; border-top-width: 7px; border-bottom-width: 7px; margin-left: 4px; }
+  .assina strong { display: block; font-family: var(--fonte-display); font-size: 1.25rem; }
+  .assina span { color: #555; font-size: .9375rem; }
+
+  /* 5 · confiança */
+  .confianca .grade { display: grid; gap: var(--e5); margin-top: var(--e5); }
+  @media (min-width: 900px) { .confianca .grade { grid-template-columns: 1fr 1fr; align-items: start; } }
+  .numero { font-family: var(--fonte-display); font-weight: 800; font-size: clamp(4.5rem, 12vw, 8rem); line-height: .9; color: var(--vermelho-escuro); }
+  .numero-texto { font-size: 1.25rem; margin-top: 8px; max-width: 30ch; }
+  .confianca .marcas-titulo { margin: var(--e5) 0 var(--e3); }
+
+  /* 6 · PICO: a apresentação */
+  .apresentacao .fx-palco { padding: calc(var(--topo-altura)) 16px 24px; }
+  .apresentacao .quadro { width: min(100%, var(--largura)); display: grid; gap: 20px; }
+  @media (min-width: 900px) { .apresentacao .quadro { grid-template-columns: 1fr 1.2fr; align-items: center; gap: 56px; } }
+  .apresentacao h2 { font-size: clamp(1.875rem, 4.5vw, 3.5rem); }
+  .linha-tempo { list-style: none; padding: 0; margin: 20px 0 0; position: relative; display: grid; gap: 12px; }
+  .linha-tempo li { padding-left: 28px; position: relative; font-size: clamp(1.125rem, 2vw, 1.5rem); font-weight: 700; font-family: var(--fonte-display); }
+  .linha-tempo li::before { content: ""; position: absolute; left: 0; top: .45em; width: 14px; height: 14px; border-radius: 50%; border: 3px solid var(--vermelho-escuro); background: #fff; }
+  .linha-tempo li small { display: block; font-family: var(--fonte-texto); font-weight: 400; font-size: 1rem; color: #555; }
+  .plateia { position: relative; background: #000; border-radius: 20px; padding: 18px 16px 16px; color: #fff; }
+  .plateia .palquinho {
+    height: 54px; border-radius: 10px 10px 0 0; background: linear-gradient(#B30000, #2A0000); display: grid; place-items: center;
+    font-family: var(--fonte-display); font-weight: 800; letter-spacing: .04em; font-size: .9375rem; text-transform: uppercase;
+  }
+  .plateia .palquinho span { opacity: calc(var(--progresso, 1) * 2 - 1); }
+  .cadeiras { display: grid; grid-template-columns: repeat(12, 1fr); gap: 6px; margin-top: 16px; }
+  .cadeiras i { aspect-ratio: 1; border-radius: 6px 6px 3px 3px; background: #1E1E1E; transition: background .25s, transform .25s; }
+  .cadeiras i.cheia { background: #FFFFFF; }
+  .cadeiras i.cheia.voce { background: var(--vermelho); transform: scale(1.12); }
+  .plateia p { margin-top: 12px; font-size: .9375rem; color: #BDBDBD; }
+  .plateia p strong { color: #fff; }
+  @media (max-width: 899px) {
+    .apresentacao h2 { font-size: 1.625rem; }
+    .linha-tempo { gap: 4px; margin-top: 10px; }
+    .linha-tempo li { font-size: 1.0625rem; }
+    .linha-tempo li small { font-size: .875rem; }
+    .cadeiras { gap: 4px; }
+    .plateia .palquinho { height: 40px; }
+  }
+
+  /* oferta */
+  .oferta { padding: var(--e5) 0 var(--e6); }
+  .cartao { background: #fff; border: 2px solid #000; border-radius: 24px; padding: var(--e4) var(--e3); display: grid; gap: var(--e4); box-shadow: 10px 10px 0 #E8E8E8; }
+  @media (min-width: 900px) { .cartao { grid-template-columns: 1.2fr 1fr; padding: var(--e5); align-items: center; } }
+  .inclui { list-style: none; padding: 0; margin: var(--e3) 0 0; display: grid; gap: 12px; font-size: 1.125rem; }
+  .inclui li { display: flex; gap: 12px; align-items: baseline; }
+  .inclui li::before { content: "✓"; color: var(--vermelho-escuro); font-weight: 800; }
+
+  .duvidas .grade { display: grid; gap: var(--e4); }
+  @media (min-width: 900px) { .duvidas .grade { grid-template-columns: 1fr 1.6fr; } }
+  .final { padding: var(--e6) 0; background: #E8E8E8; }
+  .final .miolo { display: grid; gap: var(--e4); align-items: end; }
+  @media (min-width: 900px) { .final .miolo { grid-template-columns: 1.3fr 1fr; } }
+  .final h2 { font-size: clamp(2.5rem, 7vw, 5rem); }
+  .rodape { background: #fff; }
+
+  .fx-reduzido .apresentacao .fx-palco, .fx-reduzido .metodo .fx-palco { padding: var(--e6) 16px; }
+  .fx-reduzido .metodo .palco-etapas { gap: 16px; }
+</style>
+</head>
+<body data-msg="Olá! Vim pelo site e quero agendar uma aula cortesia para meu filho/minha filha.">
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- movimento-assinatura: o batente da porta, com as marquinhas de altura -->
+<div class="porta" aria-hidden="true">
+  <div class="regua" data-regua>
+    <div class="altura" data-altura></div>
+  </div>
+</div>
+
+<header class="topo">
+  <div class="miolo">
+    <a class="marca" href="#inicio" aria-label="Bateras Beat Music School — início"><img src="../comum/logo.png" alt="Bateras Beat Music School" width="140" height="140"></a>
+    <div class="topo-acoes">
+      <nav data-nav aria-label="Seções">
+        <ul>
+          <li><a href="#inicio" data-marca="1º dia">Início</a></li>
+          <li><a href="#muda" data-marca="primeiro ritmo">O que muda</a></li>
+          <li><a href="#metodo" data-marca="primeira música">Método</a></li>
+          <li><a href="#confianca" data-marca="primeiro ensaio">Confiança</a></li>
+          <li><a href="#apresentacao" data-marca="a apresentação">A apresentação</a></li>
+          <li><a href="#duvidas" data-marca="">Dúvidas</a></li>
+        </ul>
+      </nav>
+      <a class="cta cta-topo" data-cta href="https://www.baterasbeat.com.br/quem-somos/contato/faleconosco">Agendar aula cortesia</a>
+      <button class="menu-botao" type="button" data-menu-botao aria-expanded="false">Menu</button>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- 1 · Abertura -->
+  <section class="abertura" id="inicio" data-abertura data-fx-fundo="#FFFFFF" data-fx-tinta="#000000">
+    <div class="miolo">
+      <div>
+        <p class="selo"><i aria-hidden="true"></i>Para pais e mães</p>
+        <h1 data-fx="palavras" data-fx-duracao="800">Aulas de música para crianças e adolescentes, perto de casa.</h1>
+        <p class="sub" data-fx="surgir" data-fx-atraso="500">Na rede de escola de música que mais cresce no Brasil. Comece com uma aula cortesia de 1 hora.</p>
+        <div class="cta-bloco" data-fx="surgir" data-fx-atraso="700">
+          <a class="cta" data-cta href="https://www.baterasbeat.com.br/quem-somos/contato/faleconosco">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3a.5.5 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/></svg>
+            Agendar aula cortesia</a>
+          <p class="risco-zero"><span>1 hora</span><span>Não precisa levar nada</span><span>Unidade perto de casa</span></p>
+        </div>
+      </div>
+      <div class="foto" data-fx="direita" data-fx-atraso="300">
+        <button class="yt" type="button" data-yt="SBbOYicjNAo" aria-label="Assistir: aulas de bateria para crianças na Bateras Beat">
+          <img src="https://i.ytimg.com/vi_webp/SBbOYicjNAo/hqdefault.webp" alt="" width="480" height="360" fetchpriority="low" decoding="async">
+          <span class="play" aria-hidden="true"></span>
+        </button>
+        <p class="legenda">Aulas de bateria para crianças na Bateras Beat.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · Tela demais -->
+  <section class="tela" aria-labelledby="t-tela" data-tela data-fx-fundo="#111111" data-fx-tinta="#FFFFFF">
+    <div class="miolo">
+      <div class="celular" aria-hidden="true">
+        <div class="brilho"></div>
+        <div class="aviso"><b>Tempo de tela</b>Mais uma hora hoje.</div>
+      </div>
+      <div>
+        <h2 id="t-tela" data-fx="digitar" data-fx-duracao="1600">Quanto tempo ele passou na tela hoje?</h2>
+        <p class="texto" data-fx="surgir" data-fx-atraso="900">Tocar um instrumento pede as duas mãos, os dois pés e a cabeça inteira. Não sobra mão pro celular.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · O que muda nele -->
+  <section class="secao muda" id="muda" aria-labelledby="t-muda" data-fx-fundo="#FFFFFF" data-fx-tinta="#000000">
+    <div class="miolo">
+      <p class="rotulo">O que muda</p>
+      <h2 id="t-muda" data-fx="subir">Música trabalha o que a escola cobra.</h2>
+      <div class="itens">
+        <div class="item" data-fx="subir"><div class="icone" aria-hidden="true">1</div><h3>Foco</h3><p>Uma música tem começo, meio e fim. Pra tocar inteira, ele precisa ficar atento até o último compasso.</p></div>
+        <div class="item" data-fx="subir" data-fx-atraso="120"><div class="icone" aria-hidden="true">2</div><h3>Coordenação</h3><p>Mãos e pés fazendo coisas diferentes ao mesmo tempo. Isso se treina, aula após aula.</p></div>
+        <div class="item" data-fx="subir" data-fx-atraso="240"><div class="icone" aria-hidden="true">3</div><h3>Orgulho</h3><p>O dia em que ele sobe no palco e a plateia aplaude. Esse ele não esquece.</p></div>
+      </div>
+      <div class="videos">
+        <div data-fx="surgir">
+          <button class="yt" type="button" data-yt="soka_ozeUhY" aria-label="Assistir: musicalização infantil na Bateras Beat">
+            <img src="https://i.ytimg.com/vi_webp/soka_ozeUhY/hqdefault.webp" alt="" width="480" height="360" loading="lazy" decoding="async">
+            <span class="play" aria-hidden="true"></span>
+          </button>
+          <p class="legenda">Musicalização infantil na Bateras Beat.</p>
+        </div>
+        <div data-fx="surgir" data-fx-atraso="150">
+          <button class="yt" type="button" data-yt="w8IhHYHS6rU" aria-label="Assistir: Ananda Giordano, aluna destaque">
+            <img src="https://i.ytimg.com/vi/w8IhHYHS6rU/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+            <span class="play" aria-hidden="true"></span>
+          </button>
+          <p class="legenda">Ananda Giordano, aluna destaque.</p>
+        </div>
+      </div>
+      <div class="cta-bloco" style="margin-top:var(--e5)">
+        <a class="cta" data-cta href="https://www.baterasbeat.com.br/quem-somos/contato/faleconosco">Agendar aula cortesia</a>
+        <p class="risco-zero"><span>1 hora</span><span>Não precisa levar nada</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · O método, passo a passo (etapas) -->
+  <section class="metodo" id="metodo" aria-labelledby="t-metodo" data-fx-fixa data-fx-altura="3.2" data-fx-etapas="4">
+    <div class="fx-palco">
+      <div class="quadro">
+        <div>
+          <p class="rotulo">O caminho</p>
+          <h2 id="t-metodo">Do primeiro dia ao palco.</h2>
+          <div class="pontos" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <div class="assina">
+            <button class="yt" type="button" data-yt="UbU3p2uFw7k" aria-label="Assistir: Dino Verdade toca Bananeira no Mão na Massa">
+              <img src="https://i.ytimg.com/vi/UbU3p2uFw7k/mqdefault.jpg" alt="" width="320" height="180" loading="lazy" decoding="async">
+              <span class="play" aria-hidden="true"></span>
+            </button>
+            <p><strong>Dino Verdade</strong><span>Fundador da Bateras Beat. O método leva a assinatura dele.</span></p>
+          </div>
+        </div>
+        <div class="palco-etapas">
+          <div class="fx-etapa"><span class="n">1</span><h3>Você agenda pelo WhatsApp</h3><p>A gente direciona para a unidade mais perto da sua casa.</p></div>
+          <div class="fx-etapa"><span class="n">2</span><h3>Aula cortesia de 1 hora</h3><p>Seu filho experimenta, com professor. Não precisa levar nada.</p></div>
+          <div class="fx-etapa"><span class="n">3</span><h3>Aulas na unidade</h3><p>Com o método criado pelo Dino Verdade, aplicado em toda a rede.</p></div>
+          <div class="fx-etapa"><span class="n">4</span><h3>O palco</h3><p>A promessa da Bateras Beat: no palco em 3 meses.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · Confiança -->
+  <section class="secao confianca" id="confianca" aria-labelledby="t-confianca">
+    <div class="miolo">
+      <p class="rotulo">Confiança</p>
+      <h2 id="t-confianca" data-fx="subir">Escola séria, rede grande, unidade perto.</h2>
+      <div class="grade">
+        <div data-fx="esquerda">
+          <p class="numero"><span data-fx="contar" data-fx-fim="44">44</span></p>
+          <p class="numero-texto">unidades em 4 países: Brasil, Itália, China e Austrália.</p>
+          <p class="numero-texto" style="color:#555">A rede de escola de música que mais cresce no Brasil.</p>
+        </div>
+        <div data-fx="direita">
+          <button class="yt" type="button" data-yt="CKDCryBfv1E" aria-label="Assistir: a Bateras Beat no programa Pequenas Empresas Grandes Negócios">
+            <img src="https://i.ytimg.com/vi_webp/CKDCryBfv1E/hqdefault.webp" alt="" width="480" height="360" loading="lazy" decoding="async">
+            <span class="play" aria-hidden="true"></span>
+          </button>
+          <p class="legenda">A Bateras Beat no programa “Pequenas Empresas Grandes Negócios”.</p>
+        </div>
+      </div>
+      <p class="marcas-titulo rotulo">Marcas parceiras</p>
+      <ul class="marcas">
+        <li><a href="http://www.pearl-latinamerica.com/" target="_blank" rel="noopener"><img src="../comum/marcas/pearl.webp" alt="Pearl" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="https://br.yamaha.com/index.html" target="_blank" rel="noopener"><img src="../comum/marcas/yamaha.webp" alt="Yamaha" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://paiste.com/" target="_blank" rel="noopener"><img src="../comum/marcas/paiste.webp" alt="Paiste" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://www2.musical-express.com.br/beta/evans/" target="_blank" rel="noopener"><img src="../comum/marcas/evans.webp" alt="Evans" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://www2.musical-express.com.br/beta/promark/" target="_blank" rel="noopener"><img src="../comum/marcas/promark.webp" alt="Promark" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://www2.musical-express.com.br/beta/lista_de_produtos/?portfolio_fornecedor=gibraltar" target="_blank" rel="noopener"><img src="../comum/marcas/gibraltar.webp" alt="Gibraltar" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="https://odery.com.br/" target="_blank" rel="noopener"><img src="../comum/marcas/odery.webp" alt="Odery" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://www.tagima.com.br/" target="_blank" rel="noopener"><img src="../comum/marcas/tagima.webp" alt="Tagima" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://orioncymbals.com.br/" target="_blank" rel="noopener"><img src="../comum/marcas/orion.webp" alt="Orion Cymbals" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://krestcymbals.com.br/web/" target="_blank" rel="noopener"><img src="../comum/marcas/krest.webp" alt="Krest Cymbals" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://www.torellimusical.com.br/" target="_blank" rel="noopener"><img src="../comum/marcas/torelli.webp" alt="Torelli" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://michael.com.br/site/" target="_blank" rel="noopener"><img src="../comum/marcas/michael.webp" alt="Michael" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://www.phxinstrumentos.com.br/" target="_blank" rel="noopener"><img src="../comum/marcas/phx.webp" alt="PHX" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://www.waldman-music.com/" target="_blank" rel="noopener"><img src="../comum/marcas/waldman.webp" alt="Waldman" width="195" height="80" loading="lazy"></a></li>
+        <li><a href="http://jogvibratom.com.br/" target="_blank" rel="noopener"><img src="../comum/marcas/vibratom.webp" alt="Vibratom" width="195" height="80" loading="lazy"></a></li>
+      </ul>
+      <div class="cta-bloco" style="margin-top:var(--e5)">
+        <a class="cta" data-cta href="https://www.baterasbeat.com.br/quem-somos/contato/faleconosco">Agendar aula cortesia</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · PICO: a apresentação — a plateia enche enquanto o filho cresce -->
+  <!-- PENDENTE: confirmar que alunos crianças/adolescentes se apresentam nesses eventos. -->
+  <section class="apresentacao" id="apresentacao" aria-labelledby="t-apresentacao" data-fx-fixa data-fx-altura="5">
+    <div class="fx-palco">
+      <div class="quadro">
+        <div>
+          <p class="rotulo">A apresentação</p>
+          <h2 id="t-apresentacao">Um dia, a plateia é toda dele.</h2>
+          <ol class="linha-tempo">
+            <li data-fx-opacidade="0.25,1" data-fx-faixa="0.02,0.12">1º dia<small>A aula cortesia: 1 hora, sem levar nada.</small></li>
+            <li data-fx-opacidade="0.25,1" data-fx-faixa="0.2,0.32">Primeiro ritmo<small>Mãos e pés começam a conversar.</small></li>
+            <li data-fx-opacidade="0.25,1" data-fx-faixa="0.4,0.52">Primeira música<small>Do começo ao fim, sem parar.</small></li>
+            <li data-fx-opacidade="0.25,1" data-fx-faixa="0.6,0.74">A apresentação<small>No palco em 3 meses, com você na plateia.</small></li>
+          </ol>
+        </div>
+        <div class="plateia" aria-hidden="true">
+          <div class="palquinho"><span>Palco</span></div>
+          <div class="cadeiras" data-cadeiras></div>
+          <p data-plateia-texto><strong data-ocupadas>0</strong> lugares ocupados</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- oferta -->
+  <section class="oferta" aria-labelledby="t-oferta">
+    <div class="miolo">
+      <div class="cartao" data-fx="crescer">
+        <div>
+          <p class="rotulo">Para começar</p>
+          <h2 id="t-oferta">A primeira aula é por nossa conta.</h2>
+          <ul class="inclui">
+            <li>Aula cortesia de 1 hora</li>
+            <li>Na unidade mais perto da sua casa</li>
+            <li>Não precisa levar nada: instrumento e professor estão lá</li>
+            <li data-bonus-caixa hidden>Na matrícula: <span class="bonus-tag" data-bonus hidden></span></li>
+          </ul>
+        </div>
+        <div class="cta-bloco">
+          <a class="cta" data-cta href="https://www.baterasbeat.com.br/quem-somos/contato/faleconosco">Agendar aula cortesia</a>
+          <p class="risco-zero"><span>1 hora</span><span>Não precisa levar nada</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · Dúvidas -->
+  <section class="secao duvidas" id="duvidas" aria-labelledby="t-duvidas">
+    <div class="miolo grade">
+      <div>
+        <p class="rotulo">Dúvidas</p>
+        <h2 id="t-duvidas" data-fx="subir">O que os pais perguntam.</h2>
+      </div>
+      <div class="faq">
+        <details><summary>A partir de que idade?</summary><p>A Bateras Beat tem musicalização infantil para os pequenos e aulas de instrumento para crianças e adolescentes. A idade de entrada varia por unidade e curso; no WhatsApp a gente confirma.</p></details>
+        <details><summary>Precisa ter instrumento em casa?</summary><p>Para a aula cortesia, não precisa levar nada.</p></details>
+        <details><summary>Quanto tempo dura a aula cortesia?</summary><p>1 hora, a duração padrão de uma aula.</p></details>
+        <details><summary>Quais instrumentos ele pode aprender?</summary><p>Bateria, guitarra, violão, baixo e canto, entre outros, além de musicalização infantil. A oferta varia por unidade.</p></details>
+        <details><summary>Tem unidade perto de casa?</summary><p>São 44 unidades em 4 países. Pelo WhatsApp você é direcionado para a mais próxima.</p></details>
+        <details><summary>Quanto custa depois?</summary><p>A aula cortesia não tem custo. Os valores da mensalidade variam por unidade e são informados no atendimento.<span data-bonus-caixa hidden> Na matrícula: <span data-bonus hidden></span>.</span></p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final -->
+  <section class="final" data-final aria-labelledby="t-final">
+    <div class="miolo">
+      <h2 id="t-final" data-fx="palavras">A primeira marquinha na porta começa aqui.</h2>
+      <div class="cta-bloco">
+        <a class="cta" data-cta href="https://www.baterasbeat.com.br/quem-somos/contato/faleconosco">Agendar aula cortesia</a>
+        <p class="risco-zero"><span>1 hora</span><span>Não precisa levar nada</span><span>Agendamento pelo WhatsApp</span></p>
+        <a class="link-discreto" href="https://www.baterasbeat.com.br/index.php/metodologia">Conheça a metodologia</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="miolo">
+    <img src="../comum/logo.png" alt="Bateras Beat Music School" width="64" height="64" loading="lazy">
+    <ul>
+      <li><a href="https://www.baterasbeat.com.br/quem-somos">Quem somos</a></li>
+      <li><a href="https://www.baterasbeat.com.br/bateras-tv">Bateras TV</a></li>
+      <li><a href="https://franquias.baterasbeat.com.br/">Seja um franqueado</a></li>
+      <li><a href="https://www.baterasbeat.com.br/quem-somos/privacidade">Privacidade</a></li>
+      <li><a href="http://www.instagram.com/baterasbeatoficial">Instagram</a></li>
+      <li><a href="https://www.youtube.com/channel/UCgHixOxzIkiMCEI0_m3Axuw">YouTube</a></li>
+    </ul>
+    <p>© 2026 Bateras Beat. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<div class="barra-cta" aria-hidden="true">
+  <a class="cta" data-cta tabindex="-1" href="https://www.baterasbeat.com.br/quem-somos/contato/faleconosco">Agendar aula cortesia</a>
+  <small>1 hora · não precisa levar nada</small>
+</div>
+
+<script src="../comum/sites-incriveis.js" defer></script>
+<script src="../comum/base.js" defer></script>
+<script>
+/* Página B — assinatura (porta da cozinha), tela que apaga e pico (plateia enchendo). */
+document.addEventListener("DOMContentLoaded", function () {
+  var reduzido = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- a porta: marquinhas nas seções, régua de altura na rolagem ---------- */
+  var regua = document.querySelector("[data-regua]");
+  var altura = document.querySelector("[data-altura]");
+  var links = Array.prototype.slice.call(document.querySelectorAll("[data-nav] a[data-marca]"));
+  var marcas = [];
+  var comMarca = links.filter(function (l) { return l.dataset.marca; });
+  comMarca.forEach(function (l, i) {
+    var m = document.createElement("div");
+    m.className = "marca-p";
+    m.style.bottom = (i / (comMarca.length - 1) * 100) + "%";
+    m.innerHTML = "<span></span>";
+    m.firstChild.textContent = l.dataset.marca;
+    regua.appendChild(m);
+    marcas.push({ el: m, alvo: document.querySelector(l.getAttribute("href")) });
+  });
+  function atualizarPorta() {
+    var linha = innerHeight * 0.45, atual = -1;
+    marcas.forEach(function (m, i) { if (m.alvo.getBoundingClientRect().top <= linha) atual = i; });
+    if (reduzido) atual = Math.max(atual, 0);
+    marcas.forEach(function (m, i) {
+      m.el.classList.toggle("feita", i <= atual);
+      m.el.classList.toggle("agora", i === atual);
+    });
+    var total = document.documentElement.scrollHeight - innerHeight;
+    var p = total > 0 ? scrollY / total : 0;
+    altura.style.transform = "translateY(" + (-p * regua.clientHeight).toFixed(1) + "px)";
+  }
+
+  /* ---------- tela que apaga ---------- */
+  var tela = document.querySelector("[data-tela]");
+  new IntersectionObserver(function (e) {
+    if (e[0].isIntersecting) setTimeout(function () { tela.classList.add("apagou"); }, reduzido ? 0 : 1800);
+  }, { threshold: 0.5 }).observe(tela);
+
+  /* ---------- pico: cadeiras ocupadas ---------- */
+  var cena = document.getElementById("apresentacao");
+  var cadeiras = cena.querySelector("[data-cadeiras]");
+  var ocupadas = cena.querySelector("[data-ocupadas]");
+  var TOTAL = 72, ordem = [];
+  for (var i = 0; i < TOTAL; i++) { cadeiras.appendChild(document.createElement("i")); ordem.push(i); }
+  // embaralha com semente fixa: as cadeiras enchem "espalhadas", como plateia de verdade
+  var s = 7; ordem.sort(function () { s = (s * 9301 + 49297) % 233280; return s / 233280 - 0.5; });
+  var voce = 5; // primeira fila, quase no centro
+  var lugares = cadeiras.children;
+  function desenhar(p) {
+    var t = Math.min(1, Math.max(0, (p - 0.1) / 0.72));
+    var n = Math.round(t * TOTAL);
+    for (var k = 0; k < TOTAL; k++) lugares[ordem[k]].classList.toggle("cheia", k < n);
+    lugares[voce].classList.toggle("voce", t >= 1);
+    lugares[voce].classList.toggle("cheia", t >= 1 || lugares[voce].classList.contains("cheia"));
+    ocupadas.textContent = n === TOTAL ? "Casa cheia." : n;
+    ocupadas.parentNode.lastChild.textContent = n === TOTAL ? " E você na primeira fila." : " lugares ocupados";
+  }
+
+  if (reduzido) { desenhar(1); atualizarPorta(); addEventListener("scroll", atualizarPorta, { passive: true }); return; }
+  var pendente = false;
+  function quadro() {
+    pendente = false;
+    atualizarPorta();
+    desenhar(parseFloat(getComputedStyle(cena).getPropertyValue("--progresso")) || 0);
+  }
+  addEventListener("scroll", function () { if (!pendente) { pendente = true; requestAnimationFrame(quadro); } }, { passive: true });
+  addEventListener("resize", quadro);
+  quadro();
+});
+</script>
+</body>
+</html>
